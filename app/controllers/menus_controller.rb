@@ -34,6 +34,7 @@ class MenusController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /menus/1 or /menus/1.json
   def update
     respond_to do |format|

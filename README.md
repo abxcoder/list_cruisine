@@ -269,4 +269,19 @@ end
 # Restautrant/index.html.erb
 <td class="col-md-2"><%= product.user.try(:email) %></td>
 
-# memasukkan user ke header
+# gem 'carrierwave', '~> 0.11.2'
+
+# bundle
+
+# rails g uploader photo
+
+# app -> uploader
+un comment this
+def extension_white_list
+    %w(jpg jpeg gif png)
+  end
+
+# menu.rb
+mount_uploader :image, PhotoUploader
+
+# rubah type data varchar to text
