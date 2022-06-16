@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_16_080144) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_16_102641) do
   create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "jenis"
@@ -32,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_16_080144) do
   create_table "menus", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.float "harga"
-    t.string "image"
+    t.text "image"
     t.bigint "restoran_id", null: false
     t.bigint "food_id", null: false
     t.datetime "created_at", null: false

@@ -285,3 +285,13 @@ def extension_white_list
 mount_uploader :image, PhotoUploader
 
 # rubah type data varchar to text
+rails g migration change_image_to_text_from_menus
+
+class ClassName < ActiveRecord::Migration
+  change_table :menus do |table|
+    table.change :image, :text
+  end
+end
+
+rails db:migrate
+
