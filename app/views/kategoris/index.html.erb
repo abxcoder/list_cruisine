@@ -17,7 +17,7 @@
         <td><%= kategori.name %></td>
         <td><%= kategori.jenis %></td>
         <td><%= kategori.origin %></td> 
-        <%# <td><%= kategori.user.try(:email) %></td>  %>
+        <%# <td><%= kategori.user.try(:email) %></td> 
             <td><%= link_to 'Show', kategori_path(kategori), class:'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_kategori_path(kategori), class:'btn btn-warning' %></td>
             <td><%= button_to 'Destroy', kategori_path(kategori), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>

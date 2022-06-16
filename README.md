@@ -224,7 +224,7 @@ restart app
 
 # model User 
 devise :database_authenticatable, :registerable,
-     	:recoverable, :rememberable, :trackable, :validatable
+     	:recoverable, :rememberable, :validatable
 
 
 # routes.rb
@@ -238,6 +238,8 @@ devise_scope :user do
 # trackable pada user.rb dihilangkan
 devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+# devise.rb
 
 
 # Add a new field to the user

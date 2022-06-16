@@ -13,16 +13,16 @@
     </tr>
   </thead>
   <tbody>
-    <% @restautrants.each do |restautrant| %>
+    <% @restorans.each do |restoran| %>
       <tr>
-        <td><%= restautrant.name %></td>
-        <td><%= restautrant.alamat %></td>
-        <td><%= restautrant.city %></td> 
-        <td><%= restautrant.phone %></td> 
-        <%# <td><%= restautrant.user.try(:email) %></td>  %>
-            <td><%= link_to 'Show', restautrant_path(restautrant), class:'btn btn-info' %></td>
-            <td><%= link_to 'Edit', edit_restautrant_path(restautrant), class:'btn btn-warning' %></td>
-            <td><%= button_to 'Destroy', restautrant_path(restautrant), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+        <td><%= restoran.name %></td>
+        <td><%= restoran.alamat %></td>
+        <td><%= restoran.city %></td> 
+        <td><%= restoran.phone %></td> 
+        <%# <td><%= restoran.user.try(:email) %></td>
+            <td><%= link_to 'Show', restoran_path(restoran), class:'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_restoran_path(restoran), class:'btn btn-warning' %></td>
+            <td><%= button_to 'Destroy', restoran_path(restoran), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
         
       </tr>
     <% end %>
@@ -31,5 +31,5 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_restautrant_path, class:"btn btn-primary" %>
+<%= link_to 'New Restaurant', new_restoran_path, class:"btn btn-primary" %>
 
