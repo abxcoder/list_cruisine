@@ -1,14 +1,35 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Kategoris</h1>
+<h2>Menu</h2>
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Jenis</th>
+      <th>Origin</th>
+      <%# <th>Cretatory</th> %>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @kategoris.each do |kategori| %>
+      <tr>
+        <td><%= kategori.name %></td>
+        <td><%= kategori.jenis %></td>
+        <td><%= kategori.origin %></td> 
+        <%# <td><%= kategori.user.try(:email) %></td>  %>
+            <td><%= link_to 'Show', kategori_path(kategori), class:'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_kategori_path(kategori), class:'btn btn-warning' %></td>
+            <td><%= button_to 'Destroy', kategori_path(kategori), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+        
+      </tr>
+    <% end %>
+  <tbody>
+</table>
 
-<div id="kategoris">
-  <% @kategoris.each do |kategori| %>
-    <%= render kategori %>
-    <p>
-      <%= link_to "Show this kategori", kategori %>
-    </p>
-  <% end %>
-</div>
+<br>
 
-<%= link_to "New kategori", new_kategori_path %>
+<%= link_to 'New kategori', new_kategori_path, class:"btn btn-primary" %>
+
+
+

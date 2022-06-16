@@ -167,10 +167,7 @@ class Kategori < ApplicationRecord
 end
 
 
-
-
-
-# Now, let’s modify files in app/views/restaurants/index.html.erb folder
+# Now, let’s modify files in app/views/restaurants/index.html.erb folder and etc
 
 <p style="color: green"><%= notice %></p>
 
@@ -202,6 +199,8 @@ end
 </div>
 <br>
 <%= link_to 'New Restautrant', new_restautrant_path, class: "btn btn-primary" %>
+
+
 
 # add this gem
 gem 'devise', '~> 4.8', '>= 4.8.1'

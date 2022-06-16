@@ -1,14 +1,35 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Restorans</h1>
+<h2>Restoran</h2>
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Name</th>
+      <th>Alamat</th>
+      <th>City</th>
+      <th>phone</th>
+      <%# <th>Cretatory</th> %>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @restautrants.each do |restautrant| %>
+      <tr>
+        <td><%= restautrant.name %></td>
+        <td><%= restautrant.alamat %></td>
+        <td><%= restautrant.city %></td> 
+        <td><%= restautrant.phone %></td> 
+        <%# <td><%= restautrant.user.try(:email) %></td>  %>
+            <td><%= link_to 'Show', restautrant_path(restautrant), class:'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_restautrant_path(restautrant), class:'btn btn-warning' %></td>
+            <td><%= button_to 'Destroy', restautrant_path(restautrant), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+        
+      </tr>
+    <% end %>
+  <tbody>
+</table>
 
-<div id="restorans">
-  <% @restorans.each do |restoran| %>
-    <%= render restoran %>
-    <p>
-      <%= link_to "Show this restoran", restoran %>
-    </p>
-  <% end %>
-</div>
+<br>
 
-<%= link_to "New restoran", new_restoran_path %>
+<%= link_to 'New Restaurant', new_restautrant_path, class:"btn btn-primary" %>
+
