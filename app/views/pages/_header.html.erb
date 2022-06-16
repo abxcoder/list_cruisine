@@ -5,7 +5,6 @@
         </button>
         <a class="navbar-brand" href="pages/welcome">Food Hunter</a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <%# <%= link_to "Home", pages_welcome_path, class:"nav-linnk" %>
                 <li class="dropdown">
@@ -15,9 +14,7 @@
                     <li><%= link_to "New", new_restoran_path %></li>
                 </ul>
             </ul>
-
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <%# <%= link_to "Home", pages_welcome_path, class:"nav-linnk" %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Kategori <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -25,9 +22,7 @@
                     <li><%= link_to "New", new_kategori_path %></li>
                 </ul>
             </ul>
-
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <%# <%= link_to "Home", pages_welcome_path, class:"nav-linnk" %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Food <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -35,9 +30,7 @@
                     <li><%= link_to "New", new_food_path %></li>
                 </ul>
             </ul>
-
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <%# <%= link_to "Home", pages_welcome_path, class:"nav-linnk" %>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu <span class="caret"></span></a>
                     <ul class="dropdown-menu">
@@ -45,12 +38,18 @@
                     <li><%= link_to "New", new_menu_path %></li>
                 </ul>
             </ul>
-            
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">User <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                    <%# <li><%= link_to "List", menus_path %></li> %>
+                    <li><%= link_to "New", new_user_session_path %></li>
+                </ul>
+            </ul>
             <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
-
             <br/>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -69,8 +68,6 @@
                     </ul>
                 </li>
             </ul>
-
-
         </div>
     </div>
 </nav>

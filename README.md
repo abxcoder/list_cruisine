@@ -241,7 +241,6 @@ devise :database_authenticatable, :registerable,
 
 # devise.rb
 
-
 # Add a new field to the user
 rails g migration add_username_to_users username:string
 rake db:migrate
@@ -270,10 +269,4 @@ end
 # Restautrant/index.html.erb
 <td class="col-md-2"><%= product.user.try(:email) %></td>
 
-
-# add roles
-rails g rolify Role User
-rake db:migrate
-
-# add cancan
-
+# memasukkan user ke header
