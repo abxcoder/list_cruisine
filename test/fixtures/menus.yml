@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  harga: 1.5
+  image: MyString
+  restoran: one
+  food: one
+
+two:
+  name: MyString
+  harga: 1.5
+  image: MyString
+  restoran: two
+  food: two

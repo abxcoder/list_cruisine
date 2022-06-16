@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @kategori %>
+
+<div>
+  <%= link_to "Edit this kategori", edit_kategori_path(@kategori) %> |
+  <%= link_to "Back to kategoris", kategoris_path %>
+
+  <%= button_to "Destroy this kategori", @kategori, method: :delete %>
+</div>

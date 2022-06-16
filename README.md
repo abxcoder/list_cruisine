@@ -142,6 +142,33 @@ rails generate scaffold Food name:string jenis:string origin:string Kategori:ref
 
 rails generate scaffold Menu name:string harga:flot image:string restoran:references food:references
 
+# relation
+
+# food.rb
+class Food < ApplicationRecord
+  belongs_to :kategori
+  has_many :menus, dependent: :destroy
+end
+
+# restoran
+class Restoran < ApplicationRecord
+    has_many :menus, dependent: :destroy
+end
+
+# menu
+class Menu < ApplicationRecord
+  belongs_to :restoran
+  belongs_to :food
+end
+
+# kategori
+class Kategori < ApplicationRecord
+    has_many :foods, dependent: :destroy
+end
+
+
+
+
 
 # Now, let’s modify files in app/views/restaurants/index.html.erb folder
 
