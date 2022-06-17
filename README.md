@@ -269,7 +269,7 @@ end
 # Restautrant/index.html.erb
 <td class="col-md-2"><%= product.user.try(:email) %></td>
 
-# gem 'carrierwave', '~> 0.11.2'
+# gem 'carrierwave'
 
 # bundle
 
@@ -284,12 +284,17 @@ def extension_white_list
 # menu.rb
 mount_uploader :image, PhotoUploader
 
+# app -> view -> menu -> _form,html.erb
+<%= form.file_field :image %>
+
 # rubah type data varchar to text
 rails g migration change_image_to_text_from_menus
 
 class ClassName < ActiveRecord::Migration
-  change_table :menus do |table|
+  def change
+    change_table :menus do |table|
     table.change :image, :text
+    end
   end
 end
 
