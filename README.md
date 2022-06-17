@@ -303,7 +303,7 @@ rails db:migrate
 # app -> view -> menu -> _form
 add this to show name of foreign key
 
-<%= collection_select(:menu, :restoran_id, Restoran.all, :id, :name, prompt: true ) %>
+<td><%= image_tag(menu.image.url, alt: 'Image') if menu.image? %></td>
 
 # serve root in header
 <%= link_to 'Friend App', root_path, class:"navbar-brand" %>

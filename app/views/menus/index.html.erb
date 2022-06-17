@@ -18,8 +18,7 @@
       <tr>
         <td><%= menu.name %></td>
         <td><%= menu.harga %></td>
-        <td><%= menu.image %></td>
-        <%# <%= image_tag(@menus.image.url, alt: 'Image') if @menus.image? %> %>
+        <td><%= image_tag(menu.image.url, alt: 'Image') if menu.image? %></td>
         <td><%= menu.restoran.try(:name) %></td> 
         <td><%= menu.food.try(:name) %></td> 
         <%# <td><%= menu.user.try(:email) %></td> 
