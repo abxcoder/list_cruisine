@@ -19,7 +19,7 @@
         <td><%= restoran.alamat %></td>
         <td><%= restoran.city %></td> 
         <td><%= restoran.phone %></td> 
-        <td><%= restoran.image %></td> 
+        <td><%= image_tag(restoran.image.url, alt: 'Image') if restoran.image? %></td>
         <%# <td><%= restoran.user.try(:email) %></td>
             <td><%= link_to 'Show', restoran_path(restoran), class:'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_restoran_path(restoran), class:'btn btn-warning' %></td>
