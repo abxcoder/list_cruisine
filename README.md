@@ -300,3 +300,10 @@ end
 
 rails db:migrate
 
+# app -> view -> menu -> _form
+add this to show name of foreign key
+
+<%= collection_select(:menu, :restoran_id, Restoran.all, :id, :name, prompt: true ) %>
+
+
+

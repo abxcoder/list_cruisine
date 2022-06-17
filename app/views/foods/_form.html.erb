@@ -28,7 +28,7 @@
 
   <div>
     <%= form.label :kategori_id, style: "display: block" %>
-    <%= form.text_field :kategori_id %>
+    <%= collection_select(:food, :kategori_id, Kategori.all, :id, :name, prompt: true ) %>
   </div>
 
   <div>
