@@ -305,5 +305,6 @@ add this to show name of foreign key
 
 <%= collection_select(:menu, :restoran_id, Restoran.all, :id, :name, prompt: true ) %>
 
-
+# serve root in header
+<%= link_to 'Friend App', root_path, class:"navbar-brand" %>
 

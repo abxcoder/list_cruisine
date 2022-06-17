@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :kategoris
   resources :restorans
   root "pages#dashboard"
+  get 'pagesdashboard' => 'pages#dashboard'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
