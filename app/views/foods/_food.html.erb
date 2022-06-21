@@ -14,15 +14,12 @@
     <%= food.origin %>
   </p>
 
-  <%# <p>
+  <p>
     <strong>Kategori:</strong>
     <%# <%= food.kategori_id %>
     <%= collection_select(:food, :kategori_id, Kategori.all, :id, :name, prompt: true ) %>
-  </p> %>
+  </p>
 
-  <div>
-    <%= form.label :kategori_id, style: "display: block" %>
-    <%= collection_select(:food, :kategori_id, Kategori.all, :id, :name, prompt: true ) %>
-  </div>
+ 
 
 </div>

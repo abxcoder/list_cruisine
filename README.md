@@ -308,3 +308,34 @@ add this to show name of foreign key
 # serve root in header
 <%= link_to 'Friend App', root_path, class:"navbar-brand" %>
 
+# make users page 
+rails generate controller person index
+
+# app/controllers/person_controller.rb
+@users = User.all
+
+# app/views/person/index.html.erb
+<% @users.each do |user| %>
+  <%= user.username %><br/>
+  <%= user.email %><br/>
+<% end %>
+
+# routes.rb
+get '/persons' => 'person#index'
+
+# add this person_controller.rb
+def show
+  @user = User.find_by_id(params[:id])
+end
+
+#  create app/views/person/show.html.erb
+<h1><%= @user.username %></h1>
+<h5><%= @user.email%></h5>
+
+# routes.rb
+get '/persons/:id' => 'person#show'
+
+
+
+
+

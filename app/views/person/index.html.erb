@@ -1,0 +1,27 @@
+
+<p style="color: green"><%= notice %></p>
+
+<h2>Person</h2>
+<table class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Email</th>
+      <th>Change Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+            <%# <td><%= link_to 'Show', persons_path(user), class:'btn btn-info' %></td>
+            <td><%= link_to 'Edit', edit_user_registration_path(user), class:'btn btn-warning' %></td>
+            <%# <td><%= button_to 'Destroy', cancel_user_registration_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Person', new_user_registration_path, class:"btn btn-primary" %>
+
