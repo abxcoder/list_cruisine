@@ -52,7 +52,7 @@ gem 'devise', '~> 4.8', '>= 4.8.1'
 
 gem 'rolify', '~> 6.0'
 
-gem 'cancan', '~> 1.6', '>= 1.6.10'
+gem "cancancan"
 
 gem 'carrierwave'
 

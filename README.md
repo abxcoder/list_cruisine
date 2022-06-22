@@ -335,6 +335,10 @@ end
 # routes.rb
 get '/persons/:id' => 'person#show'
 
+# gem "cancancan"
+bundle install
+
+
 
 
 
