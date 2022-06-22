@@ -6,6 +6,9 @@
   <thead class="thead-dark">
     <tr>
       <th>Email</th>
+      <th>User</th>
+      <th>Premium</th>
+      <th>Admin</th>
       <th>Change Role</th>
     </tr>
   </thead>
@@ -13,6 +16,9 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.email %></td>
+        <td><%= user.user %></td>
+        <td><%= user.premium %></td>
+        <td><%= user.admin %></td>
             <%# <td><%= link_to 'Show', persons_path(user), class:'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_user_registration_path(user), class:'btn btn-warning' %></td>
             <%# <td><%= button_to 'Destroy', cancel_user_registration_path(user), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>

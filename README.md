@@ -222,10 +222,9 @@ config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
 restart app
 
-# model User 
+# model User
 devise :database_authenticatable, :registerable,
      	:recoverable, :rememberable, :validatable
-
 
 # routes.rb
 devise_for :users
@@ -338,6 +337,37 @@ get '/persons/:id' => 'person#show'
 # gem "cancancan"
 bundle install
 
+# make a role in user
+rails g migration add_columns_to_users
+
+add_column :users, :user, :boolean, default:true
+add_column :users, :premium, :boolean, default:false
+add_column :users, :admin, :boolean, default:false
+
+# in application_controller.rb
+before_action :authenticate_user!
+load_and_authorize_resource
+    rescue_from CanCan::AccessDenied do |exception|
+        redirect_to '/', :alert => exception.message
+    end
+
+# rails g cancan:ability
+
+# app -> model -> ability.rb
+class Ability
+  include CanCan::Ability
+
+  def initialize(user)
+    if user.admin?
+      can :manage, :all
+    if user.premium?
+      can :manage, all
+    else
+      can [:read], Car
+      can :manage, User
+    end
+  end
+end
 
 
 
