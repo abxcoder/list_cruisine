@@ -18,10 +18,9 @@
       <tr>
         <td><%= menu.name %></td>
         <td><%= menu.harga %></td>
-        <td><%= image_tag(menu.image.url, alt: 'Image') if menu.image? %></td>
+        <td><%= image_tag(menu.image.url, :size => "200x200", alt: 'Image') if menu.image? %></td>
         <td><%= menu.restoran.try(:name) %></td> 
         <td><%= menu.food.try(:name) %></td> 
-        <%# <td><%= menu.user.try(:email) %></td> 
             <td><%= link_to 'Show', menu_path(menu), class:'btn btn-info' %></td>
             <td><%= link_to 'Edit', edit_menu_path(menu), class:'btn btn-warning' %></td>
             <td><%= button_to 'Destroy', menu_path(menu), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>

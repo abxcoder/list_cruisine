@@ -1,0 +1,23 @@
+<h1>Edit Person</h1>
+
+<%= form_with model: @user, url: update_member_path(@user), method: :patch, local: true do |f| %>
+  <div>
+    <%= f.label :email, style: "display: block" %>
+    <%= f.text_field :email %>
+  </div>
+  <div>
+    <%= f.label :admin, style: "display: block" %>
+    <%= f.check_box :admin %>
+  </div>
+  <div>
+    <%= f.label :premium, style: "display: block" %>
+    <%= f.check_box :premium %>
+  </div>
+  <div>
+    <%= f.label :user, style: "display: block" %>
+    <%= f.check_box :user %>
+  </div>
+
+
+  <%= f.submit %>
+<% end %>
