@@ -192,7 +192,7 @@ end
             <%= link_to 'Edit', edit_restautrant_path(restautrant), class: "btn  btn-warning" %>
             <%= link_to 'Destroy', restautrant_path(restautrant), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
       	  </td>
-    	</tr>
+    	  </tr>
       <% end %>
     </tbody>
   </table>
@@ -370,6 +370,7 @@ class Ability
 end
 
 # set tunggal login
+source : https://stackoverflow.com/questions/7068919/devise-limit-one-session-per-user-at-a-time?answertab=scoredesc#tab-top
 
 add gem
 
