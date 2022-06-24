@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_22_032341) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_24_073527) do
   create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "jenis"
@@ -62,6 +62,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_22_032341) do
     t.boolean "user", default: true
     t.boolean "premium", default: false
     t.boolean "admin", default: false
+    t.string "unique_session_id", limit: 20
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

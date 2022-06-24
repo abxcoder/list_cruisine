@@ -369,3 +369,26 @@ class Ability
   end
 end
 
+# set tunggal login
+
+add gem
+
+gem 'devise-security'
+
+# rails generate devise_security:install
+
+# rails g migration AddSessionLimitableToUsers unique_session_id
+add_column :users, :unique_session_id, :string, limit: 20
+
+# rake db:migrate
+
+# Edit your app/models/user.rb file
+
+class User < ActiveRecord::Base
+  devise :session_limitable # other devise options
+  ... rest of file ...
+end
+
+
+
+
