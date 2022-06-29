@@ -390,6 +390,3 @@ class User < ActiveRecord::Base
   ... rest of file ...
 end
 
-
-
-

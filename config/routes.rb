@@ -21,10 +21,6 @@ Rails.application.routes.draw do
   get '/persons/:id/edit' => 'person#edit', as: "edit_member"
   patch '/persons/:id' => 'person#update', as: "update_member"
   
-
-
-
-
 #   devise_for :users, :path_prefix => 'd'
 # resources :users, :only =>[:show]
 
