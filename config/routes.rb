@@ -19,3 +19,5 @@ Rails.application.routes.draw do
   
 
 end
+
+# matikan sign up api
