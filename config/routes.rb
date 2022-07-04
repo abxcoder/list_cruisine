@@ -18,10 +18,18 @@ Rails.application.routes.draw do
 
   get '/persons/create' => 'person#create', as: "create_member"
   post '/persons/register' => 'person#register', as: "register_member"
-  
+  get '/persons/:id/destroy' => 'person#destroy', as: "destroy_member"
+  # get '/clients/detail'
 
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:create]
+      post '/login', to: 'auth#login'
+      get '/profile', to: 'clients#profile', as: "profile_member"
+      get '/clients/:id/detail', to: 'clients#detail', as: "detail_member"
+      get '/clients/detailed', to: 'clients#detail', as: "detailed_member"
+    end
+  end
   
 
 end
-
-# matikan sign up api

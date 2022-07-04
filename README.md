@@ -432,3 +432,31 @@ def create
 
 </form>
 
+# Build API for client
+
+# gemfile
+gem "jwt", "~> 2.4"
+
+# bundle add active_model_serializers
+
+# user.rb
+add this
+
+attr_accessor :password
+
+  def authenticate(plaintext_password)
+    if BCrypt::Password.new(self.encrypted_password) == plaintext_password
+      self
+    else
+      false
+    end
+  end
+
+# rails g controller api/v1/clients
+
+# rails g serializer client
+
+# rails g controller api/v1/auth
+
+
+

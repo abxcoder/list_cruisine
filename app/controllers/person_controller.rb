@@ -15,6 +15,7 @@ class PersonController < ApplicationController
     @person = User.new(person_params)
     if @person.save
       redirect_to persons_path
+      flash[:success] = "successfully add member!"
     else
       render :new
     end
@@ -23,6 +24,16 @@ class PersonController < ApplicationController
   def edit
     @user = User.find(params[:id])
     render :edit
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to persons_path, notice: "Person was destroyed." }
+      format.json { head :no_content }
+    end
   end
 
   # PATCH/PUT /menus/1 or /menus/1.json
