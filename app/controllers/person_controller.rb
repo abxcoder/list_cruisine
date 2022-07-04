@@ -7,10 +7,22 @@ class PersonController < ApplicationController
     @user = User.find_by_id(params[:id])
   end
 
+  def create
+    @person = User.new
+  end
+
+  def register
+    @person = User.new(person_params)
+    if @person.save
+      redirect_to persons_path
+    else
+      render :new
+    end
+  end
+
   def edit
     @user = User.find(params[:id])
     render :edit
-    
   end
 
   # PATCH/PUT /menus/1 or /menus/1.json
@@ -34,7 +46,7 @@ class PersonController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:user).permit(:email, :admin, :premium, :user)
+      params.require(:user).permit(:email, :password, :admin, :premium, :user)
     end
 
 end

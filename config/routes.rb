@@ -16,6 +16,10 @@ Rails.application.routes.draw do
   get '/persons/:id/edit' => 'person#edit', as: "edit_member"
   patch '/persons/:id' => 'person#update', as: "update_member"
 
+  get '/persons/create' => 'person#create', as: "create_member"
+  post '/persons/register' => 'person#register', as: "register_member"
+  
+
   
 
 end

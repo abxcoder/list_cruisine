@@ -1,0 +1,13 @@
+<form action='/persons/register' method='post' accept-charset="UTF-8">
+ 
+  <label for="email">Email Address</label>
+  <input type="text" id="email" name="user[email]" > <br>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="user[password]"> <br>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
+
+  <input type="submit" value="Submit">
+
+</form>

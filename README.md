@@ -390,3 +390,45 @@ class User < ActiveRecord::Base
   ... rest of file ...
 end
 
+# add user from admin
+
+person_controller.rb
+
+def create
+    @person = User.new
+  end
+
+  def register
+    @person = User.new(person_params)
+
+    if @person.save
+      redirect_to persons_path
+    else
+      render :new
+    end
+  end
+ 
+ 
+ 
+ routes.rb
+ 
+ get '/persons/create' => 'person#create', as: "create_member"
+  post '/persons/register' => 'person#register', as: "register_member"
+ 
+ 
+  app -> view -> person -> create.html.erb
+ 
+<form action='/persons/register' method='post' accept-charset="UTF-8">
+ 
+  <label for="email">Email Address</label>
+  <input type="text" id="email" name="user[email]" > <br>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="user[password]"> <br>
+
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token%>" >
+
+  <input type="submit" value="Submit">
+
+</form>
+
