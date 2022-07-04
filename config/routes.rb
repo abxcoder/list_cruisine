@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post '/login', to: 'auth#login'
       get '/profile', to: 'clients#profile', as: "profile_member"
       get '/clients/:id/detail', to: 'clients#detail', as: "detail_member"
-      get '/clients/detailed', to: 'clients#detail', as: "detailed_member"
+      # get '/clients/detailed', to: 'clients#detail', as: "detailed_member"
     end
   end
   
