@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get '/profile', to: 'clients#profile', as: "profile_member"
       get '/clients/:id/detail', to: 'clients#detail', as: "detail_member"
       # get '/clients/detailed', to: 'clients#detail', as: "detailed_member"
+      post '/search', to: 'search#cari'
     end
   end
   
