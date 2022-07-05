@@ -18,7 +18,7 @@
       <tr>
         <td><%= menu.name %></td>
         <td><%= menu.harga %></td>
-        <td><%= image_tag(menu.image.url, :size => "200x200", alt: 'Image') if menu.image? %></td>
+        <td><%= image_tag(menu.image.url, :size => "100x100", alt: 'Image') if menu.image? %></td>
         <td><%= menu.restoran.try(:name) %></td> 
         <td><%= menu.food.try(:name) %></td> 
             <td><%= link_to 'Show', menu_path(menu), class:'btn btn-info' %></td>
