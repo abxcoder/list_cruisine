@@ -1,5 +1,9 @@
-<%# <%= render 'pages/header' %> %>
-<h1> Detailed Person </h1>
+<%# <%= render 'pages/header' %>
+<h3> Detailed Person </h3>
 
-<%# <h1><%= @user</h1> %>
-<h1><%= @token %></h1>
+<h5> email : <%= @user.email %></h5>
+<h5> password : <%= @user.encrypted_password %></h5>
+
+<h5> token : <%= @token %></h5>
+
+<%= link_to 'Back', persons_path, class:"btn btn-primary" %>
