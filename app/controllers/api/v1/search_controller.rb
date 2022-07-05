@@ -7,8 +7,6 @@ class Api::V1::SearchController < ApiController
         render json: { result: @food}, status: :accepted
     end
 
-    
-
     private
 
     def pencarian
