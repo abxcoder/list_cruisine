@@ -9,7 +9,7 @@ class Api::V1::SearchController < ApiController
 
           @menu = Menu.where( food_id: @food[0].id)
 
-          
+          # jika menu kosong?, masukkan kondisi dan presnt api khusus menu kosong
           restonya = Array.new
           restonya2 = Array.new
           final_resto = Array.new
