@@ -4,7 +4,8 @@ class Api::V1::SearchController < ApiController
     def cari
         # cari = pencarian[:cari]
         @food= Food.where('name LIKE ?', "%#{pencarian[:cari]}")
-        render json: { result: @food}, status: :accepted
+        @menu = Menu.where( food_id: @food[0].id)
+        render json: { result: @food, menu: @menu }, status: :ok
     end
 
     private
