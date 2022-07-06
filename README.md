@@ -459,4 +459,21 @@ attr_accessor :password
 # rails g controller api/v1/auth
 
 
+# page not found
+
+# routes.rb
+get '*unmatched_route', to: 'main#not_found'
+
+# make file main_controller in app -> controller
+and wirite this
+
+class MainController < ApplicationController
+
+    def not_found
+        render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+    end
+
+end
+
+
 

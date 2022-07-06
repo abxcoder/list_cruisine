@@ -12,8 +12,10 @@ class Api::V1::ClientsController < ApiController
       @token = encode_token(user_id: @user.id)
       # byebug
       # render json: { jwt: @token, user: @user }, status: :accepted
+      # render :layout => false
       
     end
+    
 
     private
   

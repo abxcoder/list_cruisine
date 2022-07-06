@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get '/persons/:id/destroy' => 'person#destroy', as: "destroy_member"
   # get '/clients/detail'
 
+  # get '*unmatched_route', to: 'main#not_found'
+
   namespace :api do
     namespace :v1 do
       resources :users, only: [:create]
