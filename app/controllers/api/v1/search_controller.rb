@@ -55,6 +55,7 @@ class Api::V1::SearchController < ApiController
           api = Array.new
           api.push("result": "data Yang anda cari tidak ditemukan", "status": "failed")
           render json: { data: api }, status: :ok
+          
         end
     end
 
