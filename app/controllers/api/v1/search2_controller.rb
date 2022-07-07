@@ -4,8 +4,11 @@ class Api::V1::Search2Controller < ApiController
     def cari
         # cari = pencarian[:cari]
         @kategori= Kategori.where('name LIKE ?', "%#{pencarian[:cari]}")
+        @kategori.count > 0 ? @food = Food.where(kategori_id: @kategori[0].id) : @food = 0
 
-        if @kategori.count > 0 
+
+
+        if @menu != 0 
 
             @food = Food.where( kategori_id: @kategori[0].id)
 
@@ -16,7 +19,7 @@ class Api::V1::Search2Controller < ApiController
                 @resto = "blank"
             end
 
-            render json: { result: @kategori, menu: @food }, status: :ok
+            render json: { result: @kategori, food: @food, keterangan: "masih dalam tahap pegembangan" }, status: :ok
 
         else
 
