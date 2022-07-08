@@ -3,8 +3,8 @@ class RestoransController < ApplicationController
 
   # GET /restorans or /restorans.json
   def index
-    byebug
     @restorans = Restoran.all
+    # @restorans = Restoran.order(sort_column + ' ' + sort_direction).paginate(:per_page => 5, :page => params[:page])
   end
 
   # GET /restorans/1 or /restorans/1.json
