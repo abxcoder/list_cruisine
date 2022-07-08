@@ -1,9 +1,5 @@
 https://documenter.getpostman.com/view/21103258/UzJJsG98
 
-
-https://documenter.getpostman.com/view/21103258/UzJJsG98
-
-
 # make the project
 rails new foodhunter -d=mysql
 
@@ -467,3 +463,12 @@ end
 
 # POSTMAN
 https://documenter.getpostman.com/view/21103258/UzJJsG98
+
+
+# search, sort and pagination
+
+# app -> views -> restoran -> index.html.erb
+<%= form_tag posts_path, method: :get do %>
+  <%= text_field_tag :search, "" %>
+  <%= submit_tag 'Search' %>
+<% end %>

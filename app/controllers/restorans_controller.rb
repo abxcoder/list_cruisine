@@ -3,6 +3,7 @@ class RestoransController < ApplicationController
 
   # GET /restorans or /restorans.json
   def index
+    byebug
     @restorans = Restoran.all
   end
 
@@ -65,6 +66,6 @@ class RestoransController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def restoran_params
-      params.require(:restoran).permit(:name, :alamat, :city, :phone, :image)
+      params.require(:restoran).permit(:name, :alamat, :city, :phone, :image )
     end
 end
