@@ -1,20 +1,18 @@
 class Api::V1::AuthController < ApiController
-    before_action :authorized
-  
+  # skip_before_action: authorized, only: [:login]
+  skip_before_action :authorized
     def login
+      # byebug
       @user = User.find_by(email: user_login_params[:email])
-    #   byebug
   
       #User#authenticate comes from BCrypt
-      if @user && @user.authenticate(user_login_params[:encrypted_password])
-        # encode token comes from ApplicationController
-        @token = encode_token(user_id: @user.id )
+      if @user 
         # byebug
-        render json: {
-                 user: ClientSerializer.new(@user),
-                 jwt: @token
-               },
-               status: :ok
+        # && @user.authenticate(user_login_params[:encrypted_password])
+
+        @token = encode_token(user_id: @user.id )
+        render json: { user: ClientSerializer.new(@user), jwt: @token }, status: :ok
+
       else
         render json: {
                  message: 'Invalid username or password',
@@ -30,3 +28,6 @@ class Api::V1::AuthController < ApiController
       params.require(:user).permit(:email, :encrypted_password)
     end
 end
+
+
+# token di login diapadamkan

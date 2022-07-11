@@ -8,10 +8,6 @@ class Api::V1::ClientsController < ApiController
     def detail
       @user = User.find(params[:id])
       @token = encode_token(user_id: @user.id)
-      # byebug
-      # render json: { jwt: @token, user: @user }, status: :accepted
-      # render :layout => false
-      
     end
     
 

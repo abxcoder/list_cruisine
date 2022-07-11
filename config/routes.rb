@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get 'person/index'
-  devise_for :users
+  devise_for :users, :path_prefix =>'auth'
   resources :menus
   resources :foods
   resources :kategoris

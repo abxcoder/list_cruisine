@@ -12,12 +12,19 @@ class PersonController < ApplicationController
   end
 
   def register
-    @person = User.new(person_params)
+    emailnya = person_params[:email]
+    passwordnya = person_params[:password]
+    pass_enc = BCrypt::Password.create(passwordnya)
+    # @person = User.create!(email:emailnya, encrypted_password:pass_enc)
+    # byebug
+    @person = User.new(:email => emailnya, :password => passwordnya, :password_confirmation => passwordnya )
+    # @user.skip_confirmation! 
+    # byebug
     if @person.save
-      redirect_to persons_path
       flash[:success] = "successfully add member!"
+      redirect_to persons_path
     else
-      render :new
+      render json: { error: @person.errors.full_messages}, status: :unauthorized
     end
   end
 
@@ -57,7 +64,7 @@ class PersonController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def person_params
-      params.require(:user).permit(:email, :password, :admin, :premium, :user)
+      params.require(:user).permit(:email, :password, :admin, :premium, :user, :encrypted_password)
     end
 
 end

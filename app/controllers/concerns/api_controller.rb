@@ -1,5 +1,7 @@
 class ApiController < ActionController::API
+    # before_action :authorized, :except => [:login]
     before_action :authorized
+    # AUTHENTICATE_USER_EXCEPT_CONTROLLERS = [auth_controller]
 
     def encode_token(payload)
         # should store secret in env variable
@@ -40,4 +42,10 @@ class ApiController < ActionController::API
         render json: { message: 'Please log in' }, status: :unauthorized
         end
     end
+
+    # def authenticate_user!
+    #     unless AUTHENTICATE_USER_EXCEPT_CONTROLLERS.include?(params[:auth_controller])
+    #      super
+    #     end
+    #   end
 end
