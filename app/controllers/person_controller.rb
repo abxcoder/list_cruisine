@@ -12,19 +12,14 @@ class PersonController < ApplicationController
   end
 
   def register
-    emailnya = person_params[:email]
-    passwordnya = person_params[:password]
-    pass_enc = BCrypt::Password.create(passwordnya)
-    # @person = User.create!(email:emailnya, encrypted_password:pass_enc)
-    # byebug
-    @person = User.new(:email => emailnya, :password => passwordnya, :password_confirmation => passwordnya )
-    # @user.skip_confirmation! 
-    # byebug
+    @person = User.new(person_params)
     if @person.save
-      flash[:success] = "successfully add member!"
-      redirect_to persons_path
+      respond_to do |format|
+        format.html { redirect_to persons_path, notice: "Person was registered." }
+        format.json { head :no_content }
+      end
     else
-      render json: { error: @person.errors.full_messages}, status: :unauthorized
+      render :new
     end
   end
 
