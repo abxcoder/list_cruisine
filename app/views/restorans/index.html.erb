@@ -16,12 +16,12 @@
   <tbody>
     <% @restorans.each do |restoran| %>
       <tr>
-        <td><%= restoran.name %></td>
-        <td><%= restoran.alamat %></td>
-        <td><%= restoran.city %></td> 
-        <td><%= restoran.phone %></td> 
+        <td style="text-align: center; vertical-align: middle;"><%= restoran.name %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= restoran.alamat %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= restoran.city %></td> 
+        <td style="text-align: center; vertical-align: middle;"><%= restoran.phone %></td> 
         <td style="text-align: center; display:block;"><%= image_tag(restoran.image.url, :size => "100x100", alt: 'Image',class:"rounded-pill") if restoran.image? %></td>
-        <td class="align-middle">
+        <td style="text-align: center; vertical-align: middle;" class="align-middle">
           <div class="btn-group " role="group" aria-label="Basic outlined example">
             <%= link_to 'Show', restoran_path(restoran), class:'btn btn-info'%>
             <%= link_to 'Edit', edit_restoran_path(restoran), class:'btn btn-warning' %>

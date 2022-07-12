@@ -14,10 +14,10 @@
   <tbody>
     <% @kategoris.each do |kategori| %>
       <tr>
-        <td><%= kategori.name %></td>
-        <td><%= kategori.jenis %></td>
-        <td><%= kategori.origin %></td> 
-        <td>
+        <td style="text-align: center; vertical-align: middle;"><%= kategori.name %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= kategori.jenis %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= kategori.origin %></td> 
+        <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <%= link_to 'Show', kategori_path(kategori), class:'btn btn-info' %> 
             <%= link_to 'Edit', edit_kategori_path(kategori), class:'btn btn-warning' %>
