@@ -1,8 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
-<h2>Restoran</h2>
+<h2>Restorans</h2>
 
-<table class="table table-bordered table-striped table-hover">
+<table id="restoran_table" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr>
       <th>Name</th>
@@ -10,7 +10,7 @@
       <th>City</th>
       <th>phone</th>
       <th>Image</th>
-      <th colspan="3">Actions</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -20,17 +20,25 @@
         <td><%= restoran.alamat %></td>
         <td><%= restoran.city %></td> 
         <td><%= restoran.phone %></td> 
-        <td><%= image_tag(restoran.image.url, :size => "100x100", alt: 'Image') if restoran.image? %></td>
-        <%# <td><%= restoran.user.try(:email) %></td>
-            <td><%= link_to 'Show', restoran_path(restoran), class:'btn btn-info' %></td>
-            <td><%= link_to 'Edit', edit_restoran_path(restoran), class:'btn btn-warning' %></td>
-            <td><%= button_to 'Destroy', restoran_path(restoran), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
+        <td style="text-align: center; display:block;"><%= image_tag(restoran.image.url, :size => "100x100", alt: 'Image',class:"rounded-pill") if restoran.image? %></td>
+        <td class="align-middle">
+          <div class="btn-group " role="group" aria-label="Basic outlined example">
+            <%= link_to 'Show', restoran_path(restoran), class:'btn btn-info'%>
+            <%= link_to 'Edit', edit_restoran_path(restoran), class:'btn btn-warning' %>
+            <%= button_to 'Destroy', restoran_path(restoran), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'%>
+          </div>
+        </td>
       </tr>
     <% end %>
   <tbody>
 </table>
-
 <br>
+
+
+
+
+
+
 
 <%= link_to 'New Restaurant', new_restoran_path, class:"btn btn-primary" %>
 

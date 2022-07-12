@@ -1,14 +1,14 @@
 <p style="color: green"><%= notice %></p>
 
 <h2>Food</h2>
-<table class="table table-bordered table-striped table-hover">
+<table id="food_table" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr>
       <th>Name</th>
       <th>Jenis</th>
       <th>Origin</th>
       <th>Kategori</th>
-      <th colspan="3">Actions</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -17,11 +17,13 @@
         <td><%= food.name %></td>
         <td><%= food.jenis %></td>
         <td><%= food.origin %></td> 
-        <td><%= food.kategori.try(:name) %></td> 
-            <td><%= link_to 'Show', food_path(food), class:'btn btn-info' %></td>
-            <td><%= link_to 'Edit', edit_food_path(food), class:'btn btn-warning' %></td>
-            <td><%= button_to 'Destroy', food_path(food), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %></td>
-        
+        <td>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <%= link_to 'Show', food_path(food), class:'btn btn-info' %>
+            <%= link_to 'Edit', edit_food_path(food), class:'btn btn-warning' %>
+            <%= button_to 'Destroy', food_path(food), method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger' %>
+          </div>
+        </td>
       </tr>
     <% end %>
   <tbody>
