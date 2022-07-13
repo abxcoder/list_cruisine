@@ -86,3 +86,6 @@ end
 gem "jwt", "~> 2.4"
 
 gem "active_model_serializers", "~> 0.10.13"
+
+gem 'turbolinks'
+gem 'jquery-turbolinks'
