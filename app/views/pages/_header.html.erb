@@ -72,16 +72,20 @@
 
             <% if current_user.present? %>
                 <% if current_user.premium? %> 
-                    <form class="d-flex" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <%= form_tag(search_food_path, :method => "post", class: "navbar-form navbar-left") do %>
+                            <div class="input-group">
+                                <%= text_field_tag :search3, params[:nyari], placeholder: "Search", class: "form-control" %>
+                                <%= submit_tag "Search", :class => 'btn btn-success',:name => nil %> 
+                            </div>
+                        <% end %>
+                    </ul>
                 <% end %>
             <% end %>
 
             <br/>
 
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav ml-auto">
                 <div class="dropdown nav navbar-nav navbar-right">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Profile
@@ -108,6 +112,9 @@
                     </div>
                 </div>
             </ul>
+
+
+            
         </div>
     </div>
 </nav>

@@ -19,9 +19,9 @@ Rails.application.routes.draw do
   get '/persons/create' => 'person#create', as: "create_member"
   post '/persons/register' => 'person#register', as: "register_member"
   get '/persons/:id/destroy' => 'person#destroy', as: "destroy_member"
-  # get '/clients/detail'
 
-  # get '*unmatched_route', to: 'main#not_found'
+  post '/search/food' => 'search3#food', as: "search_food"
+  post '/search/kategori' => 'search3#kategori', as: "search_kategori"
 
   namespace :api do
     namespace :v1 do
