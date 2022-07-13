@@ -81,32 +81,32 @@
 
             <br/>
 
-            <ul ">
-            <div class="dropdown nav navbar-nav navbar-right">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Profile
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <% if user_signed_in? %>
-                        <li>
-                            <%= link_to "Edit profile", edit_user_registration_path %>
-                        </li>
-                    <% else %>
-                        <li>
-                            <%= link_to "Sign up", new_user_registration_path %>
-                        </li>
-                        <li>
-                            <%= link_to "Login", new_user_session_path %>
-                        </li>
-                    <% end %>
-                    <% if user_signed_in? %>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <%= link_to "Logout", users_sign_out_path, method: :delete %>
-                        </li>
-                    <% end %>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <div class="dropdown nav navbar-nav navbar-right">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Profile
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <% if user_signed_in? %>
+                            <li>
+                                <%= link_to "Edit profile", edit_user_registration_path %>
+                            </li>
+                        <% else %>
+                            <li>
+                                <%= link_to "Sign up", new_user_registration_path %>
+                            </li>
+                            <li>
+                                <%= link_to "Login", new_user_session_path %>
+                            </li>
+                        <% end %>
+                        <% if user_signed_in? %>
+                            <li role="separator" class="divider"></li>
+                            <li>
+                                <%= link_to "Logout", users_sign_out_path, method: :delete %>
+                            </li>
+                        <% end %>
+                    </div>
                 </div>
-            </div>
             </ul>
         </div>
     </div>
