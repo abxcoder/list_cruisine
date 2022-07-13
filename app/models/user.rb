@@ -5,7 +5,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :session_limitable
 
-  # attr_accessor :password
 
   def authenticate(plaintext_password)
     if BCrypt::Password.new(self.encrypted_password) == plaintext_password
