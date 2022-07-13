@@ -17,6 +17,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= food.name %></td>
         <td style="text-align: center; vertical-align: middle;"><%= food.jenis %></td>
         <td style="text-align: center; vertical-align: middle;"><%= food.origin %></td> 
+        <td style="text-align: center; vertical-align: middle;"><%= food.kategori.try(:name) %></td> 
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <%= link_to 'Show', food_path(food), class:'btn btn-info' %>

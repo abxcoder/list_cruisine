@@ -15,11 +15,11 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= user.email %></td>
-        <td><%= user.user %></td>
-        <td><%= user.premium %></td>
-        <td><%= user.admin %></td>
-        <td>
+        <td style="text-align: center; vertical-align: middle;"><%= user.email %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= user.user %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= user.premium %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= user.admin %></td>
+        <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <%= link_to 'Detail', api_v1_detail_member_path(user), class:'btn btn-info' %>
             <%= link_to 'Edit', edit_member_path(user), class:'btn btn-warning' %>
