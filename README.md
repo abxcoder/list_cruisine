@@ -469,3 +469,53 @@ https://documenter.getpostman.com/view/21103258/UzJJsG98
 
 # gemfile
 gem 'will_paginate', '3.0.pre2'
+
+
+
+
+
+	     @i = 0
+              while @i < menunya.count do
+                  @s = 0
+                  while @s < menunya[@i].count do
+                    restonya.push(menunya[@i][@s].restoran_id)
+                    @s += 1
+                  end
+                  @i += 1
+              end
+
+              resto = restonya.uniq
+
+              @u = 0
+              while @u < resto.count do
+                @rst = Restoran.where(id: resto[@u])
+                @e = 0
+                  while @e < menunya.count do
+                    @x = 0
+                    while @x < menunya[@e].count do
+                      if menunya[@e][@x].restoran.id == resto[@u]
+                        final.push(
+                          "menu_id": menunya[@e][@x].id,
+                          "name": menunya[@e][@x].name,
+                          "harga": menunya[@e][@x].harga,
+                          "image": menunya[@e][@x].image,
+                          "food_id": menunya[@e][@x].food_id,
+                          "created_at": menunya[@e][@x].created_at,
+                          "updated_at": menunya[@e][@x].updated_at
+                        )
+                      end
+                      @x += 1
+                    end
+                    @e += 1
+                  end
+                menu_detail.push( final)
+                restoran.push("restoran": @rst, "menu": menu_detail)
+                menu_detail = []
+                final = []
+                @u += 1
+              end
+
+              rr = Array.new
+
+              api.push("keyword": @food, "restaurant": resto.count, "menu": menunya.count, "status": "success", "result": restoran)
+              render json: { data: api  }, status: :ok
