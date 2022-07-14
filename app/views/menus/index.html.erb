@@ -10,6 +10,7 @@
       <th style="text-align: center; vertical-align: middle;">Harga</th>
       <th style="text-align: center; vertical-align: middle;">Image</th>
       <th style="text-align: center; vertical-align: middle;">Restorant</th>
+      <th style="text-align: center; vertical-align: middle;">Food</th>
       <th style="text-align: center; vertical-align: middle;">Actions</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= menu.harga %></td>
         <td style="text-align: center; display:block;"><%= image_tag(menu.image.url, :size => "100x100", alt: 'Image',class:"rounded-pill ") if menu.image? %></td>
         <td style="text-align: center; vertical-align: middle;"><%= menu.restoran.try(:name) %></td> 
+        <td style="text-align: center; vertical-align: middle;"><%= menu.food.try(:name) %></td> 
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
             <%= link_to 'Show', menu_path(menu), class:'btn btn-info' %>
