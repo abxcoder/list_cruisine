@@ -7,16 +7,13 @@ class Api::V1::Search2Controller < ApiController
       api = Array.new
 
       if @kategori.count > 0
-
         @food = Food.where(kategori_id: @kategori[0].id)
 
         if @food.count > 0
-
           @id_food = Food.where(kategori_id: @kategori[0].id).pluck(:id)
           @menu = Menu.where(menus: {food_id: @id_food})
 
           if @menu.count > 0
-
             @final_resto = Array.new
             @nama_kategori = Array.new
             @nama_resto = Array.new
@@ -49,12 +46,7 @@ class Api::V1::Search2Controller < ApiController
                     @nama_menu = []
                   end
 
-
                   @nama_kategori.push("menu": @nama_menus)
-
-
-
-
                   @final_kategori.push(@nama_kategori)
                   @nama_menus = []
                   @nama_kategori = []
@@ -67,34 +59,26 @@ class Api::V1::Search2Controller < ApiController
                 @nama_resto = []
                 @nama_kategori = []
                 @final_kategori = []
-
               end
 
-            render json: { "data": @final_resto},  status: :ok
-
-            
-
+            render json: { "C": c, "status": "success", "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "data": @final_resto},  status: :ok
           else
 
             api.push(keyword: @kategori, result: "Maaf, menu yang anda cari tidak ditemukan")
             render json: { data: api }, status: :ok
-
           end
 
         else
 
             api.push(keyword: @kategori, result: "Maaf, Kategori yang anda cari tidak ditemukan")
             render json: { data: api }, status: :ok
-
         end
 
       else
 
           api.push( result: "Maaf, keyword yang anda cari tidak ditemukan", 'status': "failed" )
           render json: { data: api }, status: :ok
-
       end
-
   end
 
   private
