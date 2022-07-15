@@ -46,8 +46,11 @@ class Api::V1::Search2Controller < ApiController
                     @nama_menu = []
                   end
 
-                  @nama_kategori.push("menu": @nama_menus)
-                  @final_kategori.push(@nama_kategori)
+                  if @nama_menus.present?
+                    @nama_kategori.push("menu": @nama_menus)
+                    @final_kategori.push(@nama_kategori)
+                  end
+
                   @nama_menus = []
                   @nama_kategori = []
                   @kg += 1
@@ -61,7 +64,7 @@ class Api::V1::Search2Controller < ApiController
                 @final_kategori = []
               end
 
-            render json: { "C": c, "status": "success", "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "data": @final_resto},  status: :ok
+            render json: { "status": "success", "kategori": @food.count, "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "data": @final_resto},  status: :ok
           else
 
             api.push(keyword: @kategori, result: "Maaf, menu yang anda cari tidak ditemukan")
