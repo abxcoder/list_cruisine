@@ -67,7 +67,7 @@ class Api::V1::Search2Controller < ApiController
             render json: { "status": "success", "kategori": @food.count, "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "data": @final_resto},  status: :ok
           else
 
-            api.push(keyword: @kategori, result: "Maaf, menu yang anda cari tidak ditemukan")
+            api.push(keyword: @kategori, result: "Maaf, Untuk kategori dimaksud belum ada menu yang tersedia saat ini")
             render json: { data: api }, status: :ok
           end
 
