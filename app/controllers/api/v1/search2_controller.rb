@@ -18,6 +18,7 @@ class Api::V1::Search2Controller < ApiController
           if @menu.count > 0
 
             @final_resto = Array.new
+            @nama_kategori = Array.new
             @nama_resto = Array.new
             @nama_menu = Array.new
             @nama_menus = Array.new
@@ -31,26 +32,46 @@ class Api::V1::Search2Controller < ApiController
               while @rt < @restoran.count do
                 @nama_resto.push(@restoran[@rt])
 
-                @mn = 0 
-                while @mn < @menu.count do
-                  
-                  if @restoran[@rt].id == @menu[@mn].restoran_id
-                    @nama_menu.push(@menu[@mn])
-                    @nama_menus.push(@nama_menu)
+                @kg = 0
+                while @kg < @food.count do
+                  @nama_kategori.push(@food[@kg])
+                  @id_kategori = @food[@kg].id 
+
+                  @mn = 0 
+                  while @mn < @menu.count do
+                    
+                    if @restoran[@rt].id == @menu[@mn].restoran_id && @id_kategori == @menu[@mn].food_id
+                      @nama_menu.push(@menu[@mn])
+                      @nama_menus.push(@nama_menu)
+                    end
+
+                    @mn += 1
+                    @nama_menu = []
                   end
 
-                  @mn += 1
-                  @nama_menu = []
+
+                  @nama_kategori.push("menu": @nama_menus)
+
+
+
+
+                  @final_kategori.push(@nama_kategori)
+                  @nama_menus = []
+                  @nama_kategori = []
+                  @kg += 1
                 end
 
-                @final_resto.push("restoran": @nama_resto, menu: @nama_menus)
+                @nama_resto.push("kategori": @final_kategori)
+                @final_resto.push("restoran": @nama_resto)
                 @rt += 1
                 @nama_resto = []
-                @nama_menus = []
+                @nama_kategori = []
+                @final_kategori = []
 
               end
 
-            render json: { "food": @food,  "final_resto": @final_resto},  status: :ok
+            render json: { "data": @final_resto},  status: :ok
+
             
 
           else
