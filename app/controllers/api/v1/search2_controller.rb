@@ -14,9 +14,8 @@ class Api::V1::Search2Controller < ApiController
           @menu = Menu.where(menus: {food_id: @id_food})
 
           if @menu.count > 0
-            @final_resto = Array.new
-            @nama_kategori = Array.new
             @nama_resto = Array.new
+            @final_resto = Array.new
             @nama_menu = Array.new
             @nama_menus = Array.new
             @nama_kategori = Array.new
@@ -25,14 +24,14 @@ class Api::V1::Search2Controller < ApiController
             @id_restoran = @menu.pluck(:restoran_id).uniq
             @restoran = Restoran.where(restorans: {id: @id_restoran})
 
-              @rt = 0
-              while @rt < @restoran.count do
-                @nama_resto.push(@restoran[@rt])
+              @kg = 0
+              while @kg < @food.count do
+                @nama_kategori.push(@food[@kg])
+                @id_kategori = @food[@kg].id 
 
-                @kg = 0
-                while @kg < @food.count do
-                  @nama_kategori.push(@food[@kg])
-                  @id_kategori = @food[@kg].id 
+                @rt = 0
+                while @rt < @restoran.count do
+                  @nama_resto.push(@restoran[@rt])
 
                   @mn = 0 
                   while @mn < @menu.count do
@@ -47,24 +46,26 @@ class Api::V1::Search2Controller < ApiController
                   end
 
                   if @nama_menus.present?
-                    @nama_kategori.push("menu": @nama_menus)
-                    @final_kategori.push(@nama_kategori)
+                    @nama_resto.push("menu": @nama_menus)
+                    @final_resto.push("restaurant": @nama_resto)
                   end
 
                   @nama_menus = []
-                  @nama_kategori = []
-                  @kg += 1
+                  @nama_resto = []
+                  @rt += 1
                 end
 
-                @nama_resto.push("kategori": @final_kategori)
-                @final_resto.push("restoran": @nama_resto)
-                @rt += 1
-                @nama_resto = []
+                @nama_kategori.push("result": @final_resto)
+                @final_kategori.push("kategori": @nama_kategori)
+                @kg += 1
+                # @nama_resto = []
                 @nama_kategori = []
-                @final_kategori = []
+                @final_resto = []
               end
 
-            render json: { "status": "success", "kategori": @food.count, "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "data": @final_resto},  status: :ok
+            api.push("status": "success", "kategori": @food.count, "jumlah_restoran": @restoran.count, "jumlah_menu": @menu.count, "result": @final_kategori)
+
+            render json: { data: api},  status: :ok
           else
 
             api.push(keyword: @kategori, result: "Maaf, Untuk kategori dimaksud belum ada menu yang tersedia saat ini")

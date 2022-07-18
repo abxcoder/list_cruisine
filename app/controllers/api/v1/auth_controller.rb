@@ -11,7 +11,8 @@ class Api::V1::AuthController < ApiController
         # && @user.authenticate(user_login_params[:encrypted_password])
 
         @token = encode_token(user_id: @user.id )
-        render json: { user: ClientSerializer.new(@user), jwt: @token }, status: :ok
+        time = Time.now + 1.minutes.to_i
+        render json: { user: ClientSerializer.new(@user), jwt: @token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
 
       else
         render json: {

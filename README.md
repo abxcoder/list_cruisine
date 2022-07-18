@@ -470,10 +470,6 @@ https://documenter.getpostman.com/view/21103258/UzJJsG98
 # gemfile
 gem 'will_paginate', '3.0.pre2'
 
-
-
-
-
 	     @i = 0
               while @i < menunya.count do
                   @s = 0
