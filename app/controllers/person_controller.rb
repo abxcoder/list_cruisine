@@ -1,6 +1,9 @@
 class PersonController < ApplicationController
   def index
-    @users = User.all
+    if current_user.admin?
+      @users = User.all
+    else redirect_to root_path
+    end
   end
 
   def show

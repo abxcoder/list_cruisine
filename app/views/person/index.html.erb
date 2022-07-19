@@ -5,11 +5,11 @@
 <table id="person_table" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr>
-      <th>Email</th>
-      <th>User</th>
-      <th>Premium</th>
-      <th>Admin</th>
-      <th>Action</th>
+      <th style="text-align: center; vertical-align: middle;">Email</th>
+      <th style="text-align: center; vertical-align: middle;">User</th>
+      <th style="text-align: center; vertical-align: middle;">Premium</th>
+      <th style="text-align: center; vertical-align: middle;">Admin</th>
+      <th style="text-align: center; vertical-align: middle;">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +21,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= user.admin %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%= link_to 'Detail', api_v1_detail_member_path(user), class:'btn btn-info' %>
+            <%# <%= link_to 'Detail', api_v1_detail_member_path(user), class:'btn btn-info' %>
             <%= link_to 'Edit', edit_member_path(user), class:'btn btn-warning' %>
             <%= link_to 'Destroy', destroy_member_path(user), method: :get, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'%>
           </div>

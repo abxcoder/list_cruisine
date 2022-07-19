@@ -12,5 +12,4 @@ class ApplicationController < ActionController::Base
         base.send :helper_method, :current_user
       end
     end
-      
 end

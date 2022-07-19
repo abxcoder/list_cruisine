@@ -3,7 +3,11 @@ class KategorisController < ApplicationController
 
   # GET /kategoris or /kategoris.json
   def index
-    @kategoris = Kategori.all
+    if current_user.admin?
+      @kategoris = Kategori.all
+    else redirect_to root_path
+    end
+    
   end
 
   # GET /kategoris/1 or /kategoris/1.json

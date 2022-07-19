@@ -1,13 +1,41 @@
-<h3> Hasil Pencarian </h3>
+
+<h3> Hasil Pencarian, <%= @cari %> ! </h3>
 
 <% if @menu.present? %>
-<h4> kamu mencari : <%= @menu.count %> food</h4> 
+    <h4> kamu mencari : <%= @menu.count %> menu</h4> 
+
+    <table id="menu_table" class="table table-bordered table-striped table-hover" >
+  <thead class="thead-dark">
+    <tr>
+      <th style="text-align: center; vertical-align: middle;">Name</th>
+      <th style="text-align: center; vertical-align: middle;">Harga</th>
+      <th style="text-align: center; vertical-align: middle;">Image</th>
+      <th style="text-align: center; vertical-align: middle;">Restorant</th>
+      <th style="text-align: center; vertical-align: middle;">Food</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @menu.each do |menus| %>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><%= menus.name %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= menus.harga %></td>
+        <td style="text-align: center; display:block;"><%= image_tag(menus.image.url, :size => "100x100", alt: 'Image',class:"rounded-pill ") if menus.image? %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= menus.restoran.try(:name) %></td> 
+        <td style="text-align: center; vertical-align: middle;"><%= menus.food.try(:name) %></td> 
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+
 
 <% end %>
 
 <% if @result.present? %>
-<h4> <%= @result %></h4>
+    <h4> <%= @result %></h4>
 <% end %>
+
+<br/>
+<br/>
 
 <%= link_to 'Back', root_path, class:"btn btn-primary" %>
 

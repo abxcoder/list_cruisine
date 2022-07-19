@@ -3,7 +3,10 @@ class MenusController < ApplicationController
 
   # GET /menus or /menus.json
   def index
-    @menus = Menu.all
+    if current_user.admin?
+      @menus = Menu.all
+    else redirect_to root_path
+    end
   end
 
   # GET /menus/1 or /menus/1.json

@@ -3,7 +3,10 @@ class RestoransController < ApplicationController
 
   # GET /restorans or /restorans.json
   def index
-    @restorans = Restoran.all
+    if current_user.admin?
+      @restorans = Restoran.all
+    else redirect_to root_path
+    end
   end
 
   # GET /restorans/1 or /restorans/1.json
