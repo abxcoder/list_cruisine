@@ -5,7 +5,7 @@ class ApiController < ActionController::API
 
     def encode_token(payload)
         # should store secret in env variable
-        JWT.encode(payload.merge(exp: 1.minutes.from_now.to_i), 'my_s3cr3t')
+        JWT.encode(payload.merge(exp: 5.minutes.from_now.to_i), 'my_s3cr3t')
         
     end
 
