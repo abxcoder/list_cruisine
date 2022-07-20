@@ -14,6 +14,7 @@ class Api::V1::Search2Controller < ApiController
           @menu = Menu.where(menus: {food_id: @id_food})
 
           if @menu.count > 0
+            
             @nama_resto = Array.new
             @final_resto = Array.new
             @nama_menu = Array.new

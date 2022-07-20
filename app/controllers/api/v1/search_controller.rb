@@ -10,39 +10,56 @@ class Api::V1::SearchController < ApiController
       
 
       if @menu != 0
-        # restonya = Array.new
-        final_resto = Array.new
-        final = Array.new
-        restoran = Array.new
-        menu_detail = Array.new
 
-        final_resto = @menu.pluck(:restoran_id).uniq
+        @restoran = Array.new
+        @nama_kategori = Array.new
+        @final_kategori = Array.new
+        @nama_menu = Array.new
+        @nama_menus = Array.new
+        @final_resto = Array.new
+        @nama_resto = Array.new
 
-        @u = 0
-          while @u < final_resto.count do
-            @rst = Restoran.where(id: final_resto[@u])
+        @id_resto = @menu.pluck(:restoran_id).uniq
+        @restoran = Restoran.where(restorans: {id: @id_resto})
+
+          
+        @kg = 0
+        while @kg < @food.count do
+          @nama_kategori.push(@food[@kg])
+          @id_kategori = @food[@kg].id 
+
+          @u = 0
+          while @u < @restoran.count do
+            @nama_resto.push(@restoran[@u])
+
             @e = 0
               while @e < @menu.count do
-                if @menu[@e].restoran.id == final_resto[@u]
-                  final.push(
-                    "menu_id": @menu[@e].id, 
-                    "name": @menu[@e].name,
-                    "harga": @menu[@e].harga,
-                    "image": @menu[@e].image,
-                    "created_at": @menu[@e].created_at,
-                    "updated_at": @menu[@e].updated_at
-                  )
+                if @menu[@e].restoran_id == @restoran[@u].id && @id_kategori == @menu[@e].food_id
+                  @nama_menu.push(@menu[@e])
+                  @nama_menus.push(@nama_menu)
                 end
                 @e += 1
+                @nama_menu = []
               end
-            menu_detail.push( final)
-            restoran.push("restoran": @rst, "menu": menu_detail)
-            menu_detail = []
-            final = []
-            @u += 1
-          end
 
-        api.push("status": "success", "restaurant": final_resto.count, "menu": @menu.count, "keyword": @food, "result": restoran )
+            if @nama_menus.present?
+              @nama_resto.push("menu": @nama_menus)
+              @final_resto.push("restaurant": @nama_resto)
+            end
+
+            @nama_menus = []
+            @nama_resto = []
+            @u += 1
+
+          end
+          @nama_kategori.push("result": @final_resto)
+          @final_kategori.push("kategori": @nama_kategori)
+          @kg += 1
+          @nama_kategori = []
+          @final_resto = []
+        end
+
+        api.push("status": "success", "restaurant": @restoran.count, "menu": @menu.count, "result": @final_kategori )
 
         render json: { data: api  }, status: :ok
       
