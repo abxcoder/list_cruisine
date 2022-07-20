@@ -22,7 +22,6 @@ class Api::V1::SearchController < ApiController
         @id_resto = @menu.pluck(:restoran_id).uniq
         @restoran = Restoran.where(restorans: {id: @id_resto})
 
-          
         @kg = 0
         while @kg < @food.count do
           @nama_kategori.push(@food[@kg])
