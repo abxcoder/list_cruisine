@@ -41,7 +41,6 @@ class Api::V1::SearchController < ApiController
                 @e += 1
                 @nama_menu = []
               end
-
             if @nama_menus.present?
               @nama_resto.push("menu": @nama_menus)
               @final_resto.push("restaurant": @nama_resto)
@@ -58,22 +57,15 @@ class Api::V1::SearchController < ApiController
           @nama_kategori = []
           @final_resto = []
         end
-
-        api.push("status": "success", "restaurant": @restoran.count, "menu": @menu.count, "result": @final_kategori )
-
+        api.push("status": "success","kategori": @food.count, "restaurant": @restoran.count, "menu": @menu.count, "result": @final_kategori )
         render json: { data: api  }, status: :ok
-      
       else
-
         api = Array.new
         api.push("result": "data Yang anda cari tidak ditemukan", "status": "failed")
         render json: { data: api }, status: :ok
-        
       end
   end
-
   private
-
   def pencarian
     params.require(:search).permit(:cari )
   end
