@@ -1,12 +1,9 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
+  before_action :is_admin, only: %i[ index ]
 
   # GET /menus or /menus.json
   def index
-    if current_user.admin?
-      @menus = Menu.all
-    else redirect_to root_path
-    end
   end
 
   # GET /menus/1 or /menus/1.json
@@ -65,6 +62,13 @@ class MenusController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_menu
       @menu = Menu.find(params[:id])
+    end
+
+    def is_admin
+      if current_user.admin?
+        @menus = Menu.all
+      else redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -1,12 +1,9 @@
 class KategorisController < ApplicationController
   before_action :set_kategori, only: %i[ show edit update destroy ]
+  before_action :is_admin, only: %i[ index ]
 
   # GET /kategoris or /kategoris.json
   def index
-    if current_user.admin?
-      @kategoris = Kategori.all
-    else redirect_to root_path
-    end
     
   end
 
@@ -65,6 +62,13 @@ class KategorisController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_kategori
       @kategori = Kategori.find(params[:id])
+    end
+
+    def is_admin
+      if current_user.admin?
+        @kategoris = Kategori.all
+      else redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

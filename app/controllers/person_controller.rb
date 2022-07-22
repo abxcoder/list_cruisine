@@ -1,9 +1,8 @@
 class PersonController < ApplicationController
+  before_action :is_admin, only: %i[ index ]
+
   def index
-    if current_user.admin?
-      @users = User.all
-    else redirect_to root_path
-    end
+    
   end
 
   def show
@@ -58,6 +57,13 @@ class PersonController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_person
       @person = User.find(params[:id])
+    end
+
+    def is_admin
+      if current_user.admin?
+        @users = User.all
+      else redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

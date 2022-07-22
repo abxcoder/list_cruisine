@@ -1,13 +1,11 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[ show edit update destroy ]
+  before_action :is_admin, only: %i[ index ]
   
 
   # GET /foods or /foods.json
   def index
-    if current_user.admin?
-      @foods = Food.all
-    else redirect_to root_path
-    end
+    
   end
 
   # GET /foods/1 or /foods/1.json
@@ -65,6 +63,13 @@ class FoodsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_food
       @food = Food.find(params[:id])
+    end
+
+    def is_admin
+      if current_user.admin?
+        @foods = Food.all
+      else redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

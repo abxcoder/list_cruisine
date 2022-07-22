@@ -1,16 +1,15 @@
 class RestoransController < ApplicationController
   before_action :set_restoran, only: %i[ show edit update destroy ]
+  before_action :is_admin, only: %i[ index ]
 
   # GET /restorans or /restorans.json
   def index
-    if current_user.admin?
-      @restorans = Restoran.all
-    else redirect_to root_path
-    end
+    
   end
 
   # GET /restorans/1 or /restorans/1.json
   def show
+    @menus = Menu.where(restoran_id: @restoran.id )
   end
 
   # GET /restorans/new
@@ -64,6 +63,13 @@ class RestoransController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_restoran
       @restoran = Restoran.find(params[:id])
+    end
+
+    def is_admin
+      if current_user.admin?
+        @restorans = Restoran.all
+      else redirect_to root_path
+      end
     end
 
     # Only allow a list of trusted parameters through.

@@ -7,7 +7,7 @@ class Api::V1::AuthController < ApiController
   
       if @user 
         @token = encode_token(user_id: @user.id )
-        time = Time.now + 5.minutes.to_i
+        time = Time.now + 50.minutes.to_i
         render json: { user: ClientSerializer.new(@user), jwt: @token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
 
       else
