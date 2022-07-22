@@ -2,11 +2,14 @@
 
 <%= render @restoran %>
 
-<div>
-  <%= link_to "Edit this restoran", edit_restoran_path(@restoran) %> |
-  <%= link_to "Back to restorans", restorans_path %>
+<div style="margin-top: 30px;">
+  
+  <%= link_to "Edit this restoran", edit_restoran_path(@restoran), class:'btn btn-primary btn-sm' %> 
+  <%= link_to "Back to restorans", restorans_path, class:'btn btn-primary btn-sm' %>
 
-  <%= button_to "Destroy this restoran", @restoran, method: :delete %>
+  <div style="margin-top: 30px;" >
+    <%= button_to "Destroy this restoran", @restoran, method: :delete, class:'btn btn-danger btn-sm' %>
+  </div>
 </div>
 
 <% if @menus.count > 0 %>

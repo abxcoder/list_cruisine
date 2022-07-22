@@ -1,27 +1,51 @@
 <div id="<%= dom_id menu %>">
-  <p>
-    <strong>Name:</strong>
-    <%= menu.name %>
-  </p>
 
-  <p>
-    <strong>Harga:</strong>
-    <%= menu.harga %>
-  </p>
 
-  <p>
-    <strong>Image:</strong>
-    <%= menu.image %>
-  </p>
+ <div class="container">
+    <div class="row ">
+        <div class="col-md-4" >
+          <img src=<%= menu.image %> class="img-thumbnail" width="304" height="236" alt="Responsive image">
+        </div>
+        <div class="col-md-8" >
+          <p>
+            <strong>Name:</strong>
+            <%= menu.name %>
+          </p>
 
-  <p>
-    <strong>Restoran:</strong>
-    <%= menu.restoran_id %>
-  </p>
+          <p>
+            <strong>Harga:</strong>
+            <%= menu.harga %>
+          </p>
 
-  <p>
-    <strong>Food:</strong>
-    <%= menu.food_id %>
-  </p>
+          <p>
+            <strong>Image:</strong>
+            <%= menu.image %>
+          </p>
 
+          <p>
+            <strong>Restoran:</strong>
+            <%= menu.restoran.name %>
+          </p>
+
+          <p>
+            <strong>Alamat:</strong>
+            <%= menu.restoran.alamat %>
+          </p>
+
+          <p>
+            <strong>Food:</strong>
+            <%= menu.food.name %>
+          </p>
+
+          <p>
+            <strong>Jenis:</strong>
+            <%= menu.food.jenis %>
+          </p>
+
+          <p>
+            <strong>Origin:</strong>
+            <%= menu.food.origin %>
+          </p>
+        </div>
+    </div>
 </div>

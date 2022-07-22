@@ -3,8 +3,10 @@
 <%= render @menu %>
 
 <div>
-  <%= link_to "Edit this menu", edit_menu_path(@menu) %> |
-  <%= link_to "Back to menus", menus_path %>
+  <%= link_to "Edit this menu", edit_menu_path(@menu), class: "btn btn-primary btn-sm" %>
+  <%= link_to "Back to menus", menus_path, class: "btn btn-primary btn-sm" %>
 
-  <%= button_to "Destroy this menu", @menu, method: :delete %>
+  <div style="margin-top: 30px;" >
+    <%= button_to "Destroy this menu", @menu, method: :delete, class: "btn btn-danger btn-sm" %>
+  </div>
 </div>
