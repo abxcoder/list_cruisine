@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  has_many :jwt_blacklists
+  has_many :jwt_actives
   # has_secure_password
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

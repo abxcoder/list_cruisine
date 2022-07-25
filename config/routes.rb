@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :jwt_actives
+  resources :jwt_blacklists
   get 'person/index'
   devise_for :users, :path_prefix =>'auth'
   resources :menus

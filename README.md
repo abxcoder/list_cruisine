@@ -515,3 +515,6 @@ gem 'will_paginate', '3.0.pre2'
 
               api.push("keyword": @food, "restaurant": resto.count, "menu": menunya.count, "status": "success", "result": restoran)
               render json: { data: api  }, status: :ok
+
+# make jwt_blacklist table
+rails generate scaffold Jwt-Blacklist jwt:string status:string user:references

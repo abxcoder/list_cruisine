@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Jwt blacklists</h1>
+
+<div id="jwt_blacklists">
+  <% @jwt_blacklists.each do |jwt_blacklist| %>
+    <%= render jwt_blacklist %>
+    <p>
+      <%= link_to "Show this jwt blacklist", jwt_blacklist %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New jwt blacklist", new_jwt_blacklist_path %>

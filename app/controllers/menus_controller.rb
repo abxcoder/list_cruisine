@@ -38,7 +38,7 @@ class MenusController < ApplicationController
   # PATCH/PUT /menus/1 or /menus/1.json
   def update
     respond_to do |format|
-      if @menu.update(menu_params)
+      if @menu.update(menu_params) 
         format.html { redirect_to menu_url(@menu), notice: "Menu was successfully updated." }
         format.json { render :show, status: :ok, location: @menu }
       else

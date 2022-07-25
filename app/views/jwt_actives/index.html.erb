@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Jwt actives</h1>
+
+<div id="jwt_actives">
+  <% @jwt_actives.each do |jwt_active| %>
+    <%= render jwt_active %>
+    <p>
+      <%= link_to "Show this jwt active", jwt_active %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New jwt active", new_jwt_active_path %>

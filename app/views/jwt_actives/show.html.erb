@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @jwt_active %>
+
+<div>
+  <%= link_to "Edit this jwt active", edit_jwt_active_path(@jwt_active) %> |
+  <%= link_to "Back to jwt actives", jwt_actives_path %>
+
+  <%= button_to "Destroy this jwt active", @jwt_active, method: :delete %>
+</div>
