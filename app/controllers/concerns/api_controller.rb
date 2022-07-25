@@ -33,9 +33,23 @@ class ApiController < ActionController::API
         @user = User.find_by(id: user_id)
         end
     end
+    
+    def jwt_compare
+        # cari daftar jwt didalam tabel blacklist dengan user id saat ini, dan masukkan dalam daftar array
+        jwtblacklist = JwtBlacklist.where(user_id: @user.id).pluck(:jwt).uniq
+
+        # tangkap jwt token yang dikirim lewat header
+        @compare = auth_header.split(' ')[1]
+
+        #  apakah @compare bisa ada dalam array jwtblacklist atau tidak
+        !@compare.in?(jwtblacklist)
+
+        # jika ada maka nilai akan true lalu kena sign unary (!) sehingga hasilnya akan terbalik
+
+    end
 
     def logged_in?
-        !!current_user
+        !!current_user && !!jwt_compare
     end
 
     def authorized
