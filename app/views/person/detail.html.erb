@@ -1,7 +1,7 @@
 <%# <h1><%= @jwt_activess %></h1>
 
 <% if @jwt_activess.present? %>
-<h2>JWT Active List</h2>
+<h2>JWT Active</h2>
 <table id="jwt_active" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr>
@@ -28,9 +28,12 @@
     <h3>Tidak ada Daftar JWT Active </h3>
 <% end %>
 
+<br/>
+<br/>
+
 
 <% if @jwt_blacklistss.present? %>
-<h2>JWT Blacklist List</h2>
+<h2>JWT Blacklist</h2>
 <table id="jwt_blacklist" class="table table-bordered table-striped table-hover">
   <thead class="thead-dark">
     <tr>
