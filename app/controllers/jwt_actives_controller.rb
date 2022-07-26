@@ -49,10 +49,14 @@ class JwtActivesController < ApplicationController
 
   # DELETE /jwt_actives/1 or /jwt_actives/1.json
   def destroy
+    # pindahkan ke table jwt blacklist
+    @jwt_blacklist = JwtBlacklist.new("jwt": @jwt_active.jwt, "user_id": @jwt_active.user_id)
+    @jwt_blacklist.save
+
     @jwt_active.destroy
 
     respond_to do |format|
-      format.html { redirect_to jwt_actives_url, notice: "Jwt active was successfully destroyed." }
+      format.html { redirect_to persons_path, notice: "Jwt active was successfully destroyed." }
       format.json { head :no_content }
     end
   end

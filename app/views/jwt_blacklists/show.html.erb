@@ -3,8 +3,7 @@
 <%= render @jwt_blacklist %>
 
 <div>
-  <%= link_to "Edit this jwt blacklist", edit_jwt_blacklist_path(@jwt_blacklist) %> |
-  <%= link_to "Back to jwt blacklists", jwt_blacklists_path %>
+  
 
-  <%= button_to "Destroy this jwt blacklist", @jwt_blacklist, method: :delete %>
+  <%= button_to "Destroy this jwt blacklist", @jwt_blacklist, method: :delete, class: 'btn btn-danger' %>
 </div>

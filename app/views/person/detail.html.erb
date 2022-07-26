@@ -17,7 +17,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= active.created_at %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%= link_to 'Revoke', detail_member_path(active), class:'btn btn-danger' %>
+            <%= link_to 'Revoke', jwt_active_path(active), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
           </div>
         </td>
       </tr>
@@ -49,7 +49,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= blacklists.created_at %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%= link_to 'Delete', detail_member_path(blacklists), class:'btn btn-danger' %>
+            <%= link_to 'Delete', jwt_blacklist_path(blacklists), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
           </div>
         </td>
       </tr>
