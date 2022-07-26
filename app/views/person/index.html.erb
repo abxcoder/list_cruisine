@@ -21,7 +21,7 @@
         <td style="text-align: center; vertical-align: middle;"><%= user.admin %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%# <%= link_to 'Detail', api_v1_detail_member_path(user), class:'btn btn-info' %>
+            <%= link_to 'Detail', detail_member_path(user), class:'btn btn-info' %>
             <%= link_to 'Edit', edit_member_path(user), class:'btn btn-warning' %>
             <%= link_to 'Destroy', destroy_member_path(user), method: :get, data: {confirm: 'Are you sure?'}, class: 'btn btn-danger'%>
           </div>
@@ -35,8 +35,5 @@
 
 <%= link_to 'New Person', create_member_path, class:"btn btn-primary" %>
 
-<br/>
-<br/>
-<br/>
-<br/>
+
 

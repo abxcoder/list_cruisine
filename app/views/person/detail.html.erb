@@ -1,0 +1,59 @@
+<%# <h1><%= @jwt_activess %></h1>
+
+<% if @jwt_activess.present? %>
+<h2>JWT Active List</h2>
+<table id="jwt_active" class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th style="text-align: center; vertical-align: middle;">JWT ACTIVE</th>
+      <th style="text-align: center; vertical-align: middle;">Create</th>
+      <th style="text-align: center; vertical-align: middle;">REVOKE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jwt_activess.each do |active| %>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><%= active.jwt %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= active.created_at %></td>
+        <td style="text-align: center; vertical-align: middle;">
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <%= link_to 'Revoke', detail_member_path(active), class:'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+<% else %>
+    <h3>Tidak ada Daftar JWT Active </h3>
+<% end %>
+
+
+<% if @jwt_blacklistss.present? %>
+<h2>JWT Blacklist List</h2>
+<table id="jwt_blacklist" class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th style="text-align: center; vertical-align: middle;">JWT BLACKLIST</th>
+      <th style="text-align: center; vertical-align: middle;">Create</th>
+      <th style="text-align: center; vertical-align: middle;">DELETE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @jwt_blacklistss.each do |blacklists| %>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><%= blacklists.jwt %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= blacklists.created_at %></td>
+        <td style="text-align: center; vertical-align: middle;">
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <%= link_to 'Delete', detail_member_path(blacklists), class:'btn btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+<% else %>
+    <h3>Tidak ada Daftar JWT Blacklist </h3>
+<% end %>
+

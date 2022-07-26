@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get '/persons/create' => 'person#create', as: "create_member"
   post '/persons/register' => 'person#register', as: "register_member"
   get '/persons/:id/destroy' => 'person#destroy', as: "destroy_member"
+  get '/persons/:id/detail' => 'person#detail', as: "detail_member"
 
   post '/search/food' => 'search3#food', as: "search_food"
   post '/search/kategori' => 'search3#kategori', as: "search_kategori"
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
       post '/login', to: 'auth#login'
       get '/profile', to: 'clients#profile', as: "profile_member"
-      get '/clients/:id/detail', to: 'clients#detail', as: "detail_member"
+      # get '/clients/:id/detail', to: 'clients#detail', as: "detail_member"
       post '/search', to: 'search#cari'
       post '/search2', to: 'search2#cari'
     end

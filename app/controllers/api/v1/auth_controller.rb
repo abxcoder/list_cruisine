@@ -17,6 +17,7 @@ class Api::V1::AuthController < ApiController
         # byebug
         
         # jika ada maka no token tersebut dimasukkan dalam daftar jwt-active
+
         if jwtactive.present?
           @jwt_blacklist = JwtBlacklist.new("jwt": @jwt, "user_id": @user.id)
           @jwt_blacklist.save
@@ -29,7 +30,7 @@ class Api::V1::AuthController < ApiController
         end
 
         time = Time.now + 50.minutes.to_i
-        render json: { user: ClientSerializer.new(@user), jwt: @token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
+        render json: { user: ClientSerializer.new(@user), jwt: @token, exp: time.strftime("%Y-%m-%d %H:%M") }, status: :ok
 
       else
         render json: { message: 'Invalid username or password'}, status: :unauthorized

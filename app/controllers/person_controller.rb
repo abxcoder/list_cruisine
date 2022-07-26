@@ -1,12 +1,12 @@
 class PersonController < ApplicationController
   before_action :is_admin, only: %i[ index ]
+  before_action :set_person, only: %i[ show edit destroy update ]
 
   def index
-    
   end
 
   def show
-    @user = User.find_by_id(params[:id])
+    # @user = User.find_by_id(params[:id])
   end
 
   def create
@@ -43,7 +43,7 @@ class PersonController < ApplicationController
   # PATCH/PUT /menus/1 or /menus/1.json
   def update
     # byebug
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     if @user.update(person_params)
       redirect_to persons_url(@person)
       # flash[:success] = "To-do item successfully updated!"
@@ -51,6 +51,13 @@ class PersonController < ApplicationController
       # flash.now[:error] = "To-do item update failed"
       render :edit
     end
+  end
+
+  def detail
+
+    @jwt_activess = JwtActive.where("user_id": params[:id]).present? ? JwtActive.where("user_id": params[:id]) : []
+    @jwt_blacklistss = JwtBlacklist.where("user_id": params[:id]).present? ? JwtBlacklist.where("user_id": params[:id]) : []
+    
   end
 
   private
