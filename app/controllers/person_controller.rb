@@ -1,6 +1,6 @@
 class PersonController < ApplicationController
   before_action :is_admin, only: %i[ index ]
-  before_action :set_person, only: %i[ show edit destroy update ]
+  before_action :set_person, only: %i[ show edit destroy update detail ]
 
   def index
   end

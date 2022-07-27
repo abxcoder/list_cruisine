@@ -50,7 +50,7 @@ class JwtActivesController < ApplicationController
   # DELETE /jwt_actives/1 or /jwt_actives/1.json
   def destroy
     # pindahkan ke table jwt blacklist
-    @jwt_blacklist = JwtBlacklist.new("jwt": @jwt_active.jwt, "user_id": @jwt_active.user_id)
+    @jwt_blacklist = JwtBlacklist.new("jwt": @jwt_active.jwt, "user_id": @jwt_active.user_id, "expired": @jwt_active.expired)
     @jwt_blacklist.save
 
     @jwt_active.destroy

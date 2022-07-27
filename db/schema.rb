@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_25_073605) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_27_023603) do
   create_table "foods", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "jenis"
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_073605) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "expired"
     t.index ["user_id"], name: "index_jwt_actives_on_user_id"
   end
 
@@ -34,6 +35,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_25_073605) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "expired"
     t.index ["user_id"], name: "index_jwt_blacklists_on_user_id"
   end
 

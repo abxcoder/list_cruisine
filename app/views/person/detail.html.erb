@@ -1,4 +1,6 @@
-<%# <h1><%= @jwt_activess %></h1>
+<h4><%= @person.email %></h4>
+<br/>
+<br/>
 
 <% if @jwt_activess.present? %>
 <h2>JWT Active</h2>
@@ -6,7 +8,7 @@
   <thead class="thead-dark">
     <tr>
       <th style="text-align: center; vertical-align: middle;">JWT ACTIVE</th>
-      <th style="text-align: center; vertical-align: middle;">Create</th>
+      <th style="text-align: center; vertical-align: middle;">Expired</th>
       <th style="text-align: center; vertical-align: middle;">REVOKE</th>
     </tr>
   </thead>
@@ -14,10 +16,14 @@
     <% @jwt_activess.each do |active| %>
       <tr>
         <td style="text-align: center; vertical-align: middle;"><%= active.jwt %></td>
-        <td style="text-align: center; vertical-align: middle;"><%= active.created_at %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= active.expired %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%= link_to 'Revoke', jwt_active_path(active), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
+            <% if active.expired > Time.utc(*Time.now.to_a)  %>
+              <%= link_to 'Still active '+ distance_of_time_in_words(active.expired - Time.utc(*Time.now.to_a)), jwt_active_path(active), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-success' %>
+            <% else %>
+              <%= link_to 'Has Expired', jwt_active_path(active), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
+            <% end %>
           </div>
         </td>
       </tr>
@@ -29,7 +35,7 @@
 <% end %>
 
 <br/>
-<br/>
+<br/> 
 
 
 <% if @jwt_blacklistss.present? %>
@@ -38,7 +44,7 @@
   <thead class="thead-dark">
     <tr>
       <th style="text-align: center; vertical-align: middle;">JWT BLACKLIST</th>
-      <th style="text-align: center; vertical-align: middle;">Create</th>
+      <th style="text-align: center; vertical-align: middle;">Expired</th>
       <th style="text-align: center; vertical-align: middle;">DELETE</th>
     </tr>
   </thead>
@@ -46,10 +52,14 @@
     <% @jwt_blacklistss.each do |blacklists| %>
       <tr>
         <td style="text-align: center; vertical-align: middle;"><%= blacklists.jwt %></td>
-        <td style="text-align: center; vertical-align: middle;"><%= blacklists.created_at %></td>
+        <td style="text-align: center; vertical-align: middle;"><%= blacklists.expired %></td>
         <td style="text-align: center; vertical-align: middle;">
           <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <%= link_to 'Delete', jwt_blacklist_path(blacklists), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
+            <% if blacklists.expired < Time.utc(*Time.now.to_a)   %>
+              <%= link_to "Has Expired", jwt_blacklist_path(blacklists), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-danger' %>
+            <% else %>
+              <%= link_to "Not Expired " + distance_of_time_in_words(blacklists.expired - Time.utc(*Time.now.to_a)), jwt_blacklist_path(blacklists), method: :delete, data: {confirm: 'Are you sure?'}, class:'btn btn-success' %>
+            <% end %>
           </div>
         </td>
       </tr>
