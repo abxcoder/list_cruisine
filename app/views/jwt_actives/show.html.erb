@@ -4,6 +4,13 @@
 
 <div>
  
+  <% if @jwt_active.expired > Time.utc(*Time.now.to_a) %>
+    <h4>Masa active JWT masih ada <%= distance_of_time_in_words(@jwt_active.expired - Time.utc(*Time.now.to_a)) %> </h4>
+    <%= button_to "Revoke this jwt active", @jwt_active, method: :delete, class: 'btn btn-success' %>
+  <% else %>
+    <h4>Masa active JWT sudah Habis </h4>
+    <%= button_to "Delete this jwt active", @jwt_active, method: :delete, class: 'btn btn-danger' %>
+  <% end %>
 
-  <%= button_to "Revoke this jwt active", @jwt_active, method: :delete, class: 'btn btn-danger' %>
+
 </div>

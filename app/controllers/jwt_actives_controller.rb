@@ -49,14 +49,20 @@ class JwtActivesController < ApplicationController
 
   # DELETE /jwt_actives/1 or /jwt_actives/1.json
   def destroy
-    # pindahkan ke table jwt blacklist
-    @jwt_blacklist = JwtBlacklist.new("jwt": @jwt_active.jwt, "user_id": @jwt_active.user_id, "expired": @jwt_active.expired)
-    @jwt_blacklist.save
+    # pindahkan ke table jwt blacklist jika jwt masih mempunyai masa expired yang active
+    if @jwt_active.expired > Time.utc(*Time.now.to_a) 
+      @jwt_blacklist = JwtBlacklist.new("jwt": @jwt_active.jwt, "user_id": @jwt_active.user_id, "expired": @jwt_active.expired)
+      @jwt_blacklist.save
+    end
 
     @jwt_active.destroy
 
+    @link = "/persons/"<%= @jwt_active.user_id %"/detail"
+
+
     respond_to do |format|
-      format.html { redirect_to persons_path, notice: "Jwt active was successfully destroyed." }
+      # format.html { redirect_to persons_path, notice: "Jwt active was successfully destroyed." }
+      format.html { redirect_to @link, notice: "Jwt active was successfully destroyed." }
       format.json { head :no_content }
     end
   end
