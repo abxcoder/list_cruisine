@@ -57,12 +57,13 @@ class JwtActivesController < ApplicationController
 
     @jwt_active.destroy
 
-    @link = "/persons/"<%= @jwt_active.user_id %"/detail"
+    # @link = "/persons/" @jwt_active.user_id "/detail"
+
 
 
     respond_to do |format|
       # format.html { redirect_to persons_path, notice: "Jwt active was successfully destroyed." }
-      format.html { redirect_to @link, notice: "Jwt active was successfully destroyed." }
+      format.html { redirect_to "/persons/#{@jwt_active.user_id}/detail", notice: "Jwt active was successfully destroyed." }
       format.json { head :no_content }
     end
   end
