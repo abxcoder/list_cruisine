@@ -49,13 +49,15 @@ class JwtBlacklistsController < ApplicationController
 
   # DELETE /jwt_blacklists/1 or /jwt_blacklists/1.json
   def destroy
-    @id = @jwt_blacklist.user_id
-    @jwt_blacklist.destroy
 
     respond_to do |format|
-      # format.html { redirect_to persons_path, notice: "Jwt blacklist was successfully destroyed." }
-      format.html { redirect_to "/persons/#{@id}/detail", notice: "Jwt blacklist was successfully destroyed." }
-      format.json { head :no_content }
+      if @jwt_blacklist.destroy
+        format.html { redirect_to "/persons/#{@jwt_blacklist.user_id}/detail", notice: "Jwt blacklist was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @jwt_blacklist.errors, status: :unprocessable_entity }
+      end
     end
   end
 

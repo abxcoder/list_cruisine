@@ -55,12 +55,14 @@ class JwtActivesController < ApplicationController
       @jwt_blacklist.save
     end
 
-    @jwt_active.destroy
-
     respond_to do |format|
-      # format.html { redirect_to persons_path, notice: "Jwt active was successfully destroyed." }
-      format.html { redirect_to "/persons/#{@jwt_active.user_id}/detail", notice: "Jwt active was successfully destroyed." }
-      format.json { head :no_content }
+      if @jwt_active.destroy
+        format.html { redirect_to "/persons/#{@jwt_active.user_id}/detail", notice: "Jwt active was successfully destroyed." }
+        format.json { head :no_content }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @jwt_active.errors, status: :unprocessable_entity }
+      end
     end
   end
 
