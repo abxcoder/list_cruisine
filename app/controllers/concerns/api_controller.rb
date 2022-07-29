@@ -43,7 +43,6 @@ class ApiController < ActionController::API
 
         #  apakah @compare bisa ada dalam array jwtblacklist atau tidak
         !@compare.in?(jwtblacklist)
-
         # jika ada maka nilai akan true lalu kena sign unary (!) sehingga hasilnya akan terbalik
 
     end

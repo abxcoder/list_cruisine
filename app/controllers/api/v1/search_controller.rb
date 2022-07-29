@@ -5,7 +5,6 @@ class Api::V1::SearchController < ApiController
     @food = pencarian[:cari].present? ? Food.where('name LIKE ?', "%#{pencarian[:cari]}") : []
   end
 
-
   private
   def pencarian
     params.require(:search).permit(:cari )

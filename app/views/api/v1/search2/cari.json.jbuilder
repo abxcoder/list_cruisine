@@ -12,7 +12,6 @@ json.kategori @kategori.each do |data|
             json.image menu.image
             json.restoran menu.restoran
             # json.resto menu.restoran.name
-            
         end
     end
 end
