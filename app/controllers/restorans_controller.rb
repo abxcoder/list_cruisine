@@ -1,10 +1,10 @@
 class RestoransController < ApplicationController
   before_action :set_restoran, only: %i[ show edit update destroy ]
-  before_action :is_admin, only: %i[ index ]
+  before_action :is_admin, only: %i[ index show new create destroy update edit]
 
   # GET /restorans or /restorans.json
   def index
-    
+    @restorans = Restoran.all
   end
 
   # GET /restorans/1 or /restorans/1.json
@@ -66,9 +66,9 @@ class RestoransController < ApplicationController
     end
 
     def is_admin
-      if current_user.admin?
-        @restorans = Restoran.all
-      else redirect_to root_path
+      if !current_user.admin?
+        
+        redirect_to root_path
       end
     end
 

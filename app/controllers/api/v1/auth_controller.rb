@@ -1,30 +1,30 @@
 class Api::V1::AuthController < ApiController
   # skip_before_action: authorized, only: [:login]
   skip_before_action :authorized
-  before_action :set_time, only: %i[:login ]
 
     def login
       # byebug
       @user = User.find_by(email: user_login_params[:email])
-      
+      @pass = @user.valid_password?(user_login_params[:encrypted_password])
+
   
-      if @user 
+      if @pass
         @token = encode_token(user_id: @user.id )
         time = Time.now + 5.minutes.to_i
         
         # cek apakah ada no token dengan id diatas didalam daftar jwt-active
-        jwtactive = JwtActive.where(user_id: @user.id).select("jwt")
+        # jwtactive = JwtActive.where(user_id: @user.id)
+        jwtactive = JwtActive.where(user_id: @user.id)
         @jwt = jwtactive.pluck(:jwt).join("")
         @expired = jwtactive.pluck(:expired).join("")
 
-        # byebug
         
                 
         # jika ada maka no token tersebut dimasukkan dalam daftar jwt-active
         if jwtactive.present?
           @jwt_blacklist = JwtBlacklist.new("jwt": @jwt, "user_id": @user.id, "expired": @expired)
           @jwt_blacklist.save
-          JwtActive.where("user_id": @user.id).limit(1).update_all("jwt": @token, "expired": time.strftime("%Y-%m-%d %H:%M"))
+          jwtactive.update_all("jwt": @token, "expired": time.strftime("%Y-%m-%d %H:%M"))
           
         # jika tidak ada, artinya user baru login pertama kali, jadi cukup simpan tokennya di jwt-active
         else
@@ -42,9 +42,6 @@ class Api::V1::AuthController < ApiController
     end
   
     private
-    def set_time
-      
-    end
     def user_login_params
       params.require(:user).permit(:email, :encrypted_password)
     end

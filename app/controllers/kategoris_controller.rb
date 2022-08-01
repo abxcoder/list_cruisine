@@ -1,10 +1,10 @@
 class KategorisController < ApplicationController
   before_action :set_kategori, only: %i[ show edit update destroy ]
-  before_action :is_admin, only: %i[ index ]
+  before_action :is_admin, only: %i[ index show new create destroy update edit ]
 
   # GET /kategoris or /kategoris.json
   def index
-    
+    @kategoris = Kategori.all
   end
 
   # GET /kategoris/1 or /kategoris/1.json
@@ -65,9 +65,8 @@ class KategorisController < ApplicationController
     end
 
     def is_admin
-      if current_user.admin?
-        @kategoris = Kategori.all
-      else redirect_to root_path
+      if !current_user.admin?
+        redirect_to root_path
       end
     end
 

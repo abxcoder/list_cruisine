@@ -1,9 +1,10 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: %i[ show edit update destroy ]
-  before_action :is_admin, only: %i[ index ]
+  before_action :is_admin, only: %i[ index show new create destroy update edit]
 
   # GET /menus or /menus.json
   def index
+    @menus = Menu.all
   end
 
   # GET /menus/1 or /menus/1.json
@@ -65,9 +66,9 @@ class MenusController < ApplicationController
     end
 
     def is_admin
-      if current_user.admin?
-        @menus = Menu.all
-      else redirect_to root_path
+      if !current_user.admin?
+        
+        redirect_to root_path
       end
     end
 

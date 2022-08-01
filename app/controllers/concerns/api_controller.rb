@@ -47,6 +47,8 @@ class ApiController < ActionController::API
 
     end
 
+   
+
     def logged_in?
         !!current_user && !!jwt_compare
     end

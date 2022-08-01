@@ -1,11 +1,11 @@
 class FoodsController < ApplicationController
   before_action :set_food, only: %i[ show edit update destroy ]
-  before_action :is_admin, only: %i[ index ]
+  before_action :is_admin, only: %i[ index show new create destroy update edit]
   
 
   # GET /foods or /foods.json
   def index
-    
+    @foods = Food.all
   end
 
   # GET /foods/1 or /foods/1.json
@@ -66,9 +66,8 @@ class FoodsController < ApplicationController
     end
 
     def is_admin
-      if current_user.admin?
-        @foods = Food.all
-      else redirect_to root_path
+      if !current_user.admin?
+        redirect_to root_path
       end
     end
 

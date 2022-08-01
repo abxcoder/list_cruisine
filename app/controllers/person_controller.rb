@@ -1,8 +1,9 @@
 class PersonController < ApplicationController
-  before_action :is_admin, only: %i[ index ]
+  before_action :is_admin, only: %i[ index show new create destroy update edit]
   before_action :set_person, only: %i[ show edit destroy update detail ]
 
   def index
+    @users = User.all
   end
 
   def show
@@ -67,9 +68,8 @@ class PersonController < ApplicationController
     end
 
     def is_admin
-      if current_user.admin?
-        @users = User.all
-      else redirect_to root_path
+      if !current_user.admin?
+        redirect_to root_path
       end
     end
 
