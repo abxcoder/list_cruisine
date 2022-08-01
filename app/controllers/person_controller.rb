@@ -56,9 +56,9 @@ class PersonController < ApplicationController
 
   def detail
 
-    @jwt_activess = JwtActive.where("user_id": params[:id]).present? ? JwtActive.where("user_id": params[:id]) : []
-    @jwt_blacklistss = JwtBlacklist.where("user_id": params[:id]).present? ? JwtBlacklist.where("user_id": params[:id]) : []
-    @imei_activess = ImeiActive.where("user_id").present? ? ImeiActive.where("user_id": params[:id]) : []
+    @jwt_activess = JwtActive.where("user_id": params[:id])
+    @jwt_blacklistss = JwtBlacklist.where("user_id": params[:id])
+    @imei_activess = ImeiActive.where("user_id": params[:id])
     
   end
 

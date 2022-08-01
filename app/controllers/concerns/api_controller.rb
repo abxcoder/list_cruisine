@@ -41,6 +41,7 @@ class ApiController < ActionController::API
     end
     
     def jwt_compare
+
         # cari daftar jwt didalam tabel blacklist dengan user id saat ini, dan masukkan dalam daftar array
         jwtblacklist = JwtBlacklist.where(user_id: @user.id).pluck(:jwt).uniq
 
@@ -54,11 +55,14 @@ class ApiController < ActionController::API
     end
 
     def imei_compare
+        # mengambil data imei dari params
         imei_number = params[:imei]
+
+        # mencari data imei active berdasarkan user id  didalam database
         imei_active = ImeiActive.where(user_id: @user.id).pluck(:number).join("")
+
+        # bandingkan
         imei_number == imei_active
-        # imei_check
-        # byebug
     end
 
    
