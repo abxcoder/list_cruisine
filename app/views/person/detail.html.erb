@@ -2,6 +2,29 @@
 <br/>
 <br/>
 
+<% if @imei_activess.present? %>
+<%# <h2>JWT Active</h2> %>
+<table id="imei_active" class="table table-bordered table-striped table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th style="text-align: center; vertical-align: middle;">IMEI ACTIVE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @imei_activess.each do |imei| %>
+      <tr>
+        <td style="text-align: center; vertical-align: middle;"><%= imei.number %></td>
+      </tr>
+    <% end %>
+  <tbody>
+</table>
+<% else %>
+    <h3>IMEI Active - Empty List </h3>
+<% end %>
+
+<br/>
+<br/> 
+
 <% if @jwt_activess.present? %>
 <%# <h2>JWT Active</h2> %>
 <table id="jwt_active" class="table table-bordered table-striped table-hover">
