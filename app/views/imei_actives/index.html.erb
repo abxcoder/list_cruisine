@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Imei actives</h1>
+
+<div id="imei_actives">
+  <% @imei_actives.each do |imei_active| %>
+    <%= render imei_active %>
+    <p>
+      <%= link_to "Show this imei active", imei_active %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New imei active", new_imei_active_path %>

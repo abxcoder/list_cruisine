@@ -3,7 +3,6 @@ class Api::V1::AuthController < ApiController
   skip_before_action :authorized
 
     def login
-      # byebug
       @user = User.find_by(email: user_login_params[:email])
       @pass = @user.valid_password?(user_login_params[:encrypted_password])
 
@@ -18,7 +17,11 @@ class Api::V1::AuthController < ApiController
         @jwt = jwtactive.pluck(:jwt).join("")
         @expired = jwtactive.pluck(:expired).join("")
 
-        
+        #
+        imeiactive = ImeiActive.where(user_id: @user.id)
+        imeiactive.destroy(imeiactive.pluck(:id))
+        @imei = imeiactive.new("number": user_login_params[:imei])
+        @imei.save
                 
         # jika ada maka no token tersebut dimasukkan dalam daftar jwt-active
         if jwtactive.present?
@@ -43,6 +46,6 @@ class Api::V1::AuthController < ApiController
   
     private
     def user_login_params
-      params.require(:user).permit(:email, :encrypted_password)
+      params.require(:user).permit(:email, :encrypted_password, :imei)
     end
 end

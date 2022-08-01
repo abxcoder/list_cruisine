@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :imei_actives
   resources :jwt_actives
   resources :jwt_blacklists
   get 'person/index'

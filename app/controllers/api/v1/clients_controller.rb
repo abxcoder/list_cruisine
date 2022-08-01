@@ -8,6 +8,6 @@ class Api::V1::ClientsController < ApiController
   
     private
     def user_params
-      params.require(:user).permit(:email, :encrypted_password)
+      params.require(:user).permit(:email, :encrypted_password, :imei)
     end
 end

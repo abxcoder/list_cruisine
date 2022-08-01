@@ -3,6 +3,7 @@ class ApiController < ActionController::API
     before_action :authorized
     # AUTHENTICATE_USER_EXCEPT_CONTROLLERS = [auth_controller]
 
+  
     def encode_token(payload)
         # should store secret in env variable
         JWT.encode(payload.merge(exp: 5.minutes.from_now.to_i), 'my_s3cr3t')
@@ -12,6 +13,11 @@ class ApiController < ActionController::API
     def auth_header
         # { Authorization: 'Bearer <token>' }
         request.headers['Authorization']
+
+    end
+
+    def imei_check
+        request.headers['imei_number']
     end
 
     def decoded_token
@@ -47,10 +53,18 @@ class ApiController < ActionController::API
 
     end
 
+    def imei_compare
+        imei_number = params[:imei]
+        imei_active = ImeiActive.where(user_id: @user.id).pluck(:number).join("")
+        imei_number == imei_active
+        # imei_check
+        # byebug
+    end
+
    
 
     def logged_in?
-        !!current_user && !!jwt_compare
+        !!current_user && !!jwt_compare && !! imei_compare
     end
 
     def authorized

@@ -1,0 +1,32 @@
+<%= form_with(model: imei_active) do |form| %>
+  <% if imei_active.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(imei_active.errors.count, "error") %> prohibited this imei_active from being saved:</h2>
+
+      <ul>
+        <% imei_active.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :number, style: "display: block" %>
+    <%= form.text_field :number %>
+  </div>
+
+  <div>
+    <%= form.label :status, style: "display: block" %>
+    <%= form.text_field :status %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

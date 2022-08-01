@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @imei_active %>
+
+<div>
+  <%= link_to "Edit this imei active", edit_imei_active_path(@imei_active) %> |
+  <%= link_to "Back to imei actives", imei_actives_path %>
+
+  <%= button_to "Destroy this imei active", @imei_active, method: :delete %>
+</div>
