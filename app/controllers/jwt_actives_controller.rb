@@ -1,5 +1,51 @@
 class JwtActivesController < ApplicationController
-  before_action :set_jwt_active, only: %i[ destroy ]
+  before_action :set_jwt_active, only: %i[ show edit update destroy ]
+
+  # GET /jwt_actives or /jwt_actives.json
+  def index
+    @jwt_actives = JwtActive.all
+  end
+
+  # GET /jwt_actives/1 or /jwt_actives/1.json
+  def show
+  end
+
+  # GET /jwt_actives/new
+  def new
+    @jwt_active = JwtActive.new
+  end
+
+  # GET /jwt_actives/1/edit
+  def edit
+  end
+
+  # POST /jwt_actives or /jwt_actives.json
+  def create
+    @jwt_active = JwtActive.new(jwt_active_params)
+
+    respond_to do |format|
+      if @jwt_active.save
+        format.html { redirect_to jwt_active_url(@jwt_active), notice: "Jwt active was successfully created." }
+        format.json { render :show, status: :created, location: @jwt_active }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @jwt_active.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /jwt_actives/1 or /jwt_actives/1.json
+  def update
+    respond_to do |format|
+      if @jwt_active.update(jwt_active_params)
+        format.html { redirect_to jwt_active_url(@jwt_active), notice: "Jwt active was successfully updated." }
+        format.json { render :show, status: :ok, location: @jwt_active }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+        format.json { render json: @jwt_active.errors, status: :unprocessable_entity }
+      end
+    end
+  end
 
   # DELETE /jwt_actives/1 or /jwt_actives/1.json
   def destroy
