@@ -17,10 +17,15 @@ class Api::V1::AuthController < ApiController
         @jwt = jwtactive.pluck(:jwt).join("")
         @expired = jwtactive.pluck(:expired).join("")
 
-        #
+        # cek imei active berdasarkan user_id
         imeiactive = ImeiActive.where(user_id: @user.id)
+
+        #lalu hapus semua imei yang ada berdasarkan id
         imeiactive.destroy(imeiactive.pluck(:id))
+
+        #lalu masukkan number imei berdasarkan params
         @imei = imeiactive.new("number": user_login_params[:imei])
+        # save
         @imei.save
                 
         # jika ada maka no token tersebut dimasukkan dalam daftar jwt-active
@@ -28,10 +33,9 @@ class Api::V1::AuthController < ApiController
           @jwt_blacklist = JwtBlacklist.new("jwt": @jwt, "user_id": @user.id, "expired": @expired)
           @jwt_blacklist.save
           jwtactive.update_all("jwt": @token, "expired": time.strftime("%Y-%m-%d %H:%M"))
-          
+        
         # jika tidak ada, artinya user baru login pertama kali, jadi cukup simpan tokennya di jwt-active
         else
-          
           @jwt_actives = JwtActive.new("jwt": @token, "user_id": @user.id, "expired": time.strftime("%Y-%m-%d %H:%M") )
           @jwt_actives.save
         end
