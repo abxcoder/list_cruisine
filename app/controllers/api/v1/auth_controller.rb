@@ -6,8 +6,16 @@ class Api::V1::AuthController < ApiController
       @user = User.find_by(email: user_login_params[:email])
       @pass = @user.valid_password?(user_login_params[:encrypted_password])
 
-  
-      if @pass
+      # cek imei active berdasarkan user_id
+      imeiactive = ImeiActive.where(user_id: @user.id)
+
+      #lalu hapus semua imei yang ada berdasarkan id
+      imeiactive.destroy(imeiactive.pluck(:id))
+
+      #cek input imei dari params
+      ciidp = user_login_params[:imei]
+
+      if @pass && ciidp.present?
         @token = encode_token(user_id: @user.id )
         time = Time.now + 5.minutes.to_i
         
@@ -17,14 +25,9 @@ class Api::V1::AuthController < ApiController
         @jwt = jwtactive.pluck(:jwt).join("")
         @expired = jwtactive.pluck(:expired).join("")
 
-        # cek imei active berdasarkan user_id
-        imeiactive = ImeiActive.where(user_id: @user.id)
-
-        #lalu hapus semua imei yang ada berdasarkan id
-        imeiactive.destroy(imeiactive.pluck(:id))
-
         #lalu masukkan number imei berdasarkan params
-        @imei = imeiactive.new("number": user_login_params[:imei])
+        @imei = imeiactive.new("number": ciidp)
+
         # save
         @imei.save
                 

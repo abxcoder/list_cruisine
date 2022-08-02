@@ -5,7 +5,6 @@ class Api::V1::ClientsController < ApiController
         render json: { user: ClientSerializer.new(current_user) }, status: :accepted
     end
 
-  
     private
     def user_params
       params.require(:user).permit(:email, :encrypted_password, :imei)
